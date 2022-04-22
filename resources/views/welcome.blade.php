@@ -28,8 +28,10 @@
             @endif
         </div>
 
-        <div class="flex items-center justify-center">
-            <div class="flex flex-col justify-around">
+        <livewire:sidebar /> 
+
+        <!-- <div class="flex items-center justify-center"> -->
+            <!-- <div class="flex flex-col justify-around">
                 <div class="space-y-6">
                     <a href="{{ route('home') }}">
                         <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
@@ -55,6 +57,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 @endsection
