@@ -9,6 +9,9 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\CharacterSheetContainer;
+use App\Http\Livewire\ReferencesContainer;
+use App\Http\Livewire\TokenizerContainer;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,4 +59,6 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/characters', CharacterSheetContainer::class);
+Route::get('/characters', CharacterSheetContainer::class)->name('characters');
+Route::get('/tokenier', TokenizerContainer::class)->name('tokenizer');
+Route::get('/references', ReferencesContainer::class)->name('references');
