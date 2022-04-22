@@ -2,6 +2,7 @@
             @if (Route::has('login'))
                 <div class="space-x-4">
                     @auth
+                        <span>Hi {{ Auth::user()->email }}</span>
                         <a
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
