@@ -13,7 +13,9 @@
                 <div>
 
                 @foreach($characters as $character)
-                    <li wire:key="{{ $character->id }}">{{$character->name}}: {{$character->id}}</lI>
+                    <a href="/characters/{{$character->id}}">
+                        <li class="leading-loose border-solid border-2 border-sky-500 mb-2 mt-2 hover:bg-green-400" wire:key="{{ $character->id }}">{{$character->name}}</lI>
+                    </a>
                 @endforeach
                     {{ $characters->links() }}
                 </div>
