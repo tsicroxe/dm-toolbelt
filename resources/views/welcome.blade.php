@@ -6,4 +6,14 @@
         <livewire:navbar /> 
         <livewire:sidebar /> 
 
+        <div class="ml-16 flex flex-col items-center justify-start">
+            @auth
+                <p>You are logged in</p>
+            @else
+                <p>Message from the creator</p>
+            @endauth
+
+        </div>
+    </div>
+
 @endsection

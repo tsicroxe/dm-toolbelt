@@ -25,14 +25,15 @@ class CharacterSheetContainer extends Component
 
     }
 
-    // public function updatingSearch()
-    // {
-    //     $this->resetPage();
-    // }
+    public function confirmDeleteCharacter(Character $character)
+    {
+        
+        $character->delete();
+    }
 
     public function render()
     {
-        return view('livewire.character-sheet-container', ['characters' => Character::paginate($this->pagination)]);
+        return view('livewire.character-sheet-container', ['characters' => Character::where('user_id', Auth::id())->paginate($this->pagination)]);
     }
 
     // Create a character

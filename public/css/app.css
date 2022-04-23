@@ -828,8 +828,20 @@ select:invalid {
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
+.mt-16 {
+	margin-top: 4rem;
+}
+.mb-16 {
+	margin-bottom: 4rem;
+}
 .block {
 	display: block;
+}
+.inline-block {
+	display: inline-block;
+}
+.inline {
+	display: inline;
 }
 .flex {
 	display: flex;
@@ -893,11 +905,20 @@ select:invalid {
 	   -moz-appearance: none;
 	        appearance: none;
 }
+.flex-row {
+	flex-direction: row;
+}
 .flex-col {
 	flex-direction: column;
 }
+.content-between {
+	align-content: space-between;
+}
 .items-center {
 	align-items: center;
+}
+.items-stretch {
+	align-items: stretch;
 }
 .justify-start {
 	justify-content: flex-start;
@@ -988,6 +1009,10 @@ select:invalid {
 .bg-green-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(236, 253, 245, var(--tw-bg-opacity));
+}
+.bg-red-500 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
 .fill-current {
 	fill: currentColor;
@@ -1201,6 +1226,11 @@ select:invalid {
 .hover\:bg-green-300:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(110, 231, 183, var(--tw-bg-opacity));
+}
+
+.hover\:bg-red-700:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 }
 
 .hover\:text-indigo-500:hover {

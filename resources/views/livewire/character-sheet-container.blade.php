@@ -13,9 +13,15 @@
                 <div>
 
                 @foreach($characters as $character)
-                    <a href="/characters/{{$character->id}}">
-                        <li class="leading-loose border-solid border-2 border-sky-500 mb-2 mt-2 hover:bg-green-400" wire:key="{{ $character->id }}">{{$character->name}}</lI>
-                    </a>
+                    <div class="flex flex-row content-between">
+                        <a href="{{route('character.view', ['character' => $character->id])}}">
+                            <li class="leading-loose border-solid border-2 border-sky-500 mb-2 mt-2 hover:bg-green-400" wire:key="{{ $character->id }}">{{$character->name}}</lI>
+
+                        </a>
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click="delete({{$character->id}})">
+                            Delete
+                        </button>
+                    </div>
                 @endforeach
                     {{ $characters->links() }}
                 </div>

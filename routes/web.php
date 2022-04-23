@@ -9,6 +9,7 @@ use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\CharacterSheetContainer;
+use App\Http\Livewire\CharacterViewer;
 use App\Http\Livewire\ReferencesContainer;
 use App\Http\Livewire\TokenizerContainer;
 
@@ -48,17 +49,19 @@ Route::middleware('auth')->group(function () {
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
-});
 
-Route::middleware('auth')->group(function () {
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
-        ->middleware('signed')
-        ->name('verification.verify');
+    ->middleware('signed')
+    ->name('verification.verify');
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+
+    Route::get('/characters', CharacterSheetContainer::class)->name('characters');
+    Route::get('/characters/{character}', CharacterViewer::class)->name('character.view');
 });
 
-Route::get('/characters', CharacterSheetContainer::class)->name('characters');
-Route::get('/tokenier', TokenizerContainer::class)->name('tokenizer');
+
+
+Route::get('/tokenizer', TokenizerContainer::class)->name('tokenizer');
 Route::get('/references', ReferencesContainer::class)->name('references');
