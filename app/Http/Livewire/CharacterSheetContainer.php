@@ -21,13 +21,17 @@ class CharacterSheetContainer extends Component
         if(!Auth::check()){
             return redirect('login');
         }
-
     
     }
 
+    // public function updatingSearch()
+    // {
+    //     $this->resetPage();
+    // }
+
     public function render()
     {
-        return view('livewire.character-sheet-container', ['characters' => Character::paginate(10)]);
+        return view('livewire.character-sheet-container', ['characters' => Character::paginate(2)]);
     }
 
     // Create a character

@@ -15,7 +15,7 @@
 
         <!-- Icons -->
         <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-        
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
@@ -32,6 +32,7 @@
 
     <body>
         @yield('body')
+
 
         @livewireScripts
     </body>
