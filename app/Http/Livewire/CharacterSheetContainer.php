@@ -25,9 +25,8 @@ class CharacterSheetContainer extends Component
 
     }
 
-    public function confirmDeleteCharacter(Character $character)
+    public function delete(Character $character)
     {
-        
         $character->delete();
     }
 
