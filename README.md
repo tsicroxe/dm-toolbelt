@@ -7,12 +7,9 @@
 3. Have Node and NPM installed. https://nodejs.org/en/
 
 ## Startup
- 
-1. From the project root directory, run `docker-compose up -d`. This will 
 
+1. From the project root directory, run `docker-compose up -d`. This will
 
-<!-- php artisan cache:clear 
-composer dump-autoload 
+<!-- php artisan cache:clear
+composer dump-autoload
 php artisan key:generate -->
-
-

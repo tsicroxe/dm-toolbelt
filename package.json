@@ -7,7 +7,9 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "format": "prettier --check --ignore-path .gitignore .",
+        "format:fix": "prettier --write --ignore-path .gitignore ."
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.3",
@@ -16,6 +18,7 @@
         "laravel-mix": "^6.0.6",
         "laravel-mix-tailwind": "^0.1",
         "postcss": "^8.1.14",
+        "prettier": "2.6.2",
         "resolve-url-loader": "^3.1",
         "sass": "^1.32",
         "sass-loader": "^8.0",
