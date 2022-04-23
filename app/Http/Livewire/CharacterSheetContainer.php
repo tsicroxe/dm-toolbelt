@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Character;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CharacterSheetContainer extends Component
 {
-    public array $characters = ["1", "2", "3"];
+    use WithPagination;
 
 
     protected $rules = [
@@ -19,11 +21,13 @@ class CharacterSheetContainer extends Component
         if(!Auth::check()){
             return redirect('login');
         }
+
+    
     }
 
     public function render()
     {
-        return view('livewire.character-sheet-container');
+        return view('livewire.character-sheet-container', ['characters' => Character::paginate(10)]);
     }
 
     // Create a character

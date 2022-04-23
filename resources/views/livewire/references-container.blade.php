@@ -4,7 +4,7 @@
         <livewire:navbar /> 
         <livewire:sidebar /> 
 
-        <div class="flex items-center justify-center">
+        <div class="ml-16 flex items-center justify-center">
             
             <p>References container</p>
         </div>

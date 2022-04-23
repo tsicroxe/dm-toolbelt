@@ -826,6 +826,12 @@ input:invalid, textarea:invalid, select:invalid {
 .mb-12 {
 	margin-bottom: 3rem;
 }
+.ml-4 {
+	margin-left: 1rem;
+}
+.ml-16 {
+	margin-left: 4rem;
+}
 .block {
 	display: block;
 }
@@ -893,6 +899,9 @@ input:invalid, textarea:invalid, select:invalid {
 }
 .items-center {
 	align-items: center;
+}
+.justify-start {
+	justify-content: flex-start;
 }
 .justify-end {
 	justify-content: flex-end;
