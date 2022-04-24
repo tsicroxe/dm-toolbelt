@@ -25,6 +25,7 @@
         "tailwindcss": "^2.2"
     },
     "dependencies": {
-        "acorn": "^8.7.0"
+        "acorn": "^8.7.0",
+        "cropperjs": "^1.5.12"
     }
 }
