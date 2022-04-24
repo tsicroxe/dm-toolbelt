@@ -13,7 +13,7 @@
 
                     @foreach($characters as $character)
                     <tr class="h-16">
-                            <td onclick="window.location='/characters/{{$character->id}}'" class="hover:bg-green-300">
+                            <td class="hover:bg-green-300 cursor-pointer" onclick="window.location='/characters/{{$character->id}}'">
                                 {{$character->name}}
                             </td>
                         <td>
@@ -25,14 +25,11 @@
                     @endforeach
 
                     <tr>
+
                         <td>
-                                    
-                            <button class="flex bg-blue-500  :bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded mb-12">
-                                Create a new character
-                            </button>
-            
+                        <livewire:create-character />
+
                         </td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>

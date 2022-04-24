@@ -12,17 +12,19 @@ class CharacterSheetContainer extends Component
     use WithPagination;
 
     protected int $pagination = 10;
+    protected $listeners = ['reRenderParent'];
 
-    protected $rules = [
-        'characterName' => 'required|min:2',
-    ];
 
     public function mount()
     {
-        if(!Auth::check()){
-            return redirect('login');
-        }
 
+    }
+
+
+    public function reRenderParent()
+    {
+        $this->mount();
+        $this->render();
     }
 
     public function delete(Character $character)
@@ -32,7 +34,7 @@ class CharacterSheetContainer extends Component
 
     public function render()
     {
-        return view('livewire.character-sheet-container', ['characters' => Character::where('user_id', Auth::id())->paginate($this->pagination)]);
+        return view('livewire.character-sheet-container', ['characters' => Character::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate($this->pagination)]);
     }
 
     // Create a character

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Character extends Model
 {
@@ -19,5 +20,16 @@ class Character extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+    * Get the user's first name.
+    *
+    * @param  string  $value
+    * @return string
+    */
+   public function getCount()
+   {
+       return $this->model->count(Character::where('user_id', Auth::id()));
+   }
     
 }
