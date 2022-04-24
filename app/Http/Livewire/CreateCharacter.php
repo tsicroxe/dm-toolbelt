@@ -31,6 +31,7 @@ class CreateCharacter extends Component
             'user_id' => Auth::id()
         ]);
         session()->flash('message', 'Character created successfully');
+        $this->name = '';
         $this->emit('reRenderParent');
     }
 
