@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    mode: 'jit',
     theme: {
         extend: {
             fontFamily: {
@@ -11,7 +12,7 @@ module.exports = {
     variants: {
         extend: {
             backgroundColor: ['active'],
-        }
+        },
     },
     purge: {
         content: [
@@ -26,7 +27,8 @@ module.exports = {
             './resources/**/*.twig',
         ],
         options: {
-            defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],
+            defaultExtractor: (content) =>
+                content.match(/[\w-/.:]+(?<!:)/g) || [],
             whitelistPatterns: [/-active$/, /-enter$/, /-leave-to$/, /show$/],
         },
     },
