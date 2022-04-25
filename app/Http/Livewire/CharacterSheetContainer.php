@@ -14,13 +14,6 @@ class CharacterSheetContainer extends Component
     protected int $pagination = 10;
     protected $listeners = ['reRenderParent'];
 
-
-    public function mount()
-    {
-
-    }
-
-
     public function reRenderParent()
     {
         $this->mount();
