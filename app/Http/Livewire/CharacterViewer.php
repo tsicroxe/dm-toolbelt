@@ -8,13 +8,10 @@ use Livewire\Component;
 
 class CharacterViewer extends Component
 {
-
     public Character $character;
 
     protected $rules = [
-
         'character.name' => 'required|string|min:5|max:191',
-
     ];
 
     public function updated($propertyName)

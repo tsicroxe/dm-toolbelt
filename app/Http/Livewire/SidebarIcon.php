@@ -10,7 +10,7 @@ class SidebarIcon extends Component
     public $text;
     public $url;
 
-    public function mount(String $icon, String $text, String $url)
+    public function mount(string $icon, string $text, string $url)
     {
         $this->icon = $icon;
         $this->text = $text;

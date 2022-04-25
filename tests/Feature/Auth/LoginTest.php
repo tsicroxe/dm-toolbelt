@@ -28,8 +28,7 @@ class LoginTest extends TestCase
 
         $this->be($user);
 
-        $this->get(route('login'))
-            ->assertRedirect(route('home'));
+        $this->get(route('login'))->assertRedirect(route('home'));
     }
 
     /** @test */

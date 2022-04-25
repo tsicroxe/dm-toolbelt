@@ -22,16 +22,16 @@ class CreateCharacterTest extends TestCase
         $component->assertStatus(200);
     }
 
-        /** @test  */
-        function can_create_character()
-        {
-            $user = User::factory()->create();
-            $this->actingAs($user);
+    /** @test  */
+    function can_create_character()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
 
-            Livewire::test(CreateCharacter::class)
-                ->set(['name' => $this->faker->name])
-                ->call('createCharacter');
+        Livewire::test(CreateCharacter::class)
+            ->set(['name' => $this->faker->name])
+            ->call('createCharacter');
 
-                $this->assertDatabaseCount(Character::class, 1);
-        }
+        $this->assertDatabaseCount(Character::class, 1);
+    }
 }

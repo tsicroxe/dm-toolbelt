@@ -28,8 +28,9 @@ class ConfirmTest extends TestCase
         $user = User::factory()->create();
         $this->be($user);
 
-        $this->get('/must-be-confirmed')
-            ->assertRedirect(route('password.confirm'));
+        $this->get('/must-be-confirmed')->assertRedirect(
+            route('password.confirm')
+        );
 
         $this->followingRedirects()
             ->get('/must-be-confirmed')

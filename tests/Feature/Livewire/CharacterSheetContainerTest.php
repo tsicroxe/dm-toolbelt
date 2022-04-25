@@ -22,15 +22,16 @@ class CharacterSheetContainerTest extends TestCase
         $component->assertStatus(200);
     }
 
-        /** @test  */
-        function can_delete_character()
-        {
-            $user = User::factory()->create();
-            $this->actingAs($user);
-            $character = Character::factory()->create(['user_id' => $user->id]);
-            Livewire::test(CharacterSheetContainer::class)
-                ->call('delete', ['character' => $character->id]);
-    
-            $this->assertDatabaseCount(Character::class, 0);
-        }
+    /** @test  */
+    function can_delete_character()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create(['user_id' => $user->id]);
+        Livewire::test(CharacterSheetContainer::class)->call('delete', [
+            'character' => $character->id,
+        ]);
+
+        $this->assertDatabaseCount(Character::class, 0);
+    }
 }

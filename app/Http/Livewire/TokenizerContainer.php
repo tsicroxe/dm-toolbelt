@@ -18,8 +18,11 @@ class TokenizerContainer extends Component
         $this->validate([
             'photo' => 'image|max:1024', // 1MB Max
         ]);
-        if(Auth::check()){
-           $photo = $this->photo->storeAs('photos', "user-" . Auth::id() . "_" . Str::uuid(16) . ".png");
+        if (Auth::check()) {
+            $photo = $this->photo->storeAs(
+                'photos',
+                'user-' . Auth::id() . '_' . Str::uuid(16) . '.png'
+            );
         }
     }
 
@@ -27,5 +30,4 @@ class TokenizerContainer extends Component
     {
         return view('livewire.tokenizer-container');
     }
-
 }
