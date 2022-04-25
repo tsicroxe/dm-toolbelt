@@ -776,6 +776,9 @@ select:invalid {
 .z-0 {
 	z-index: 0;
 }
+.z-auto {
+	z-index: auto;
+}
 .m-5 {
 	margin: 1.25rem;
 }
