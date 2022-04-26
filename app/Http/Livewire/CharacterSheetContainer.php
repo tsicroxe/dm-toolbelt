@@ -27,11 +27,7 @@ class CharacterSheetContainer extends Component
 
     public function render()
     {
-        return view('livewire.character-sheet-container', [
-            'characters' => Character::where('user_id', Auth::id())
-                ->orderBy('created_at', 'DESC')
-                ->paginate($this->pagination),
-        ]);
+        return view('livewire.character-sheet-container', ['characters' => Character::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->paginate($this->pagination)]);
     }
 
     // Create a character

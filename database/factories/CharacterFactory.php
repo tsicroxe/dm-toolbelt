@@ -16,7 +16,7 @@ class CharacterFactory extends Factory
     {
         return [
             'user_id' => User::class,
-            'name' => $this->faker->name(),
+            'name' => $this->faker->name()
         ];
     }
 }

@@ -29,12 +29,10 @@ class ResetTest extends TestCase
             'created_at' => Carbon::now(),
         ]);
 
-        $this->get(
-            route('password.reset', [
-                'email' => $user->email,
-                'token' => $token,
-            ])
-        )
+        $this->get(route('password.reset', [
+            'email' => $user->email,
+            'token' => $token,
+        ]))
             ->assertSuccessful()
             ->assertSee($user->email)
             ->assertSeeLivewire('auth.passwords.reset');
@@ -61,12 +59,10 @@ class ResetTest extends TestCase
             ->set('passwordConfirmation', 'new-password')
             ->call('resetPassword');
 
-        $this->assertTrue(
-            Auth::attempt([
-                'email' => $user->email,
-                'password' => 'new-password',
-            ])
-        );
+        $this->assertTrue(Auth::attempt([
+            'email' => $user->email,
+            'password' => 'new-password',
+        ]));
     }
 
     /** @test */

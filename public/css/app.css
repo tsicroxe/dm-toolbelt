@@ -776,6 +776,9 @@ select:invalid {
 .z-0 {
 	z-index: 0;
 }
+.z-auto {
+	z-index: auto;
+}
 .m-5 {
 	margin: 1.25rem;
 }
@@ -1221,77 +1224,96 @@ select:invalid {
 [x-cloak] {
   display: none;
 }
+
 .hover\:bg-green-300:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(110, 231, 183, var(--tw-bg-opacity));
 }
+
 .hover\:bg-red-700:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(185, 28, 28, var(--tw-bg-opacity));
 }
+
 .hover\:bg-indigo-500:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
+
 .hover\:text-indigo-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(99, 102, 241, var(--tw-text-opacity));
 }
+
 .hover\:text-indigo-600:hover {
 	--tw-text-opacity: 1;
 	color: rgba(79, 70, 229, var(--tw-text-opacity));
 }
+
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
+
 .hover\:text-gray-400:hover {
 	--tw-text-opacity: 1;
 	color: rgba(156, 163, 175, var(--tw-text-opacity));
 }
+
 .focus\:z-10:focus {
 	z-index: 10;
 }
+
 .focus\:border-blue-300:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(147, 197, 253, var(--tw-border-opacity));
 }
+
 .focus\:border-red-300:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(252, 165, 165, var(--tw-border-opacity));
 }
+
 .focus\:border-indigo-700:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(67, 56, 202, var(--tw-border-opacity));
 }
+
 .focus\:underline:focus {
 	text-decoration: underline;
 }
+
 .focus\:outline-none:focus {
 	outline: 2px solid transparent;
 	outline-offset: 2px;
 }
+
 .active\:bg-indigo-700:active {
 	--tw-bg-opacity: 1;
 	background-color: rgba(67, 56, 202, var(--tw-bg-opacity));
 }
+
 .active\:bg-gray-100:active {
 	--tw-bg-opacity: 1;
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
+
 .active\:text-gray-700:active {
 	--tw-text-opacity: 1;
 	color: rgba(55, 65, 81, var(--tw-text-opacity));
 }
+
 .active\:text-gray-500:active {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
+
 .group:hover .group-hover\:scale-100 {
 	--tw-scale-x: 1;
 	--tw-scale-y: 1;
 	transform: var(--tw-transform);
 }
+
 @media (min-width: 640px) {
 	.sm\:mx-auto {
 		margin-left: auto;
@@ -1337,6 +1359,7 @@ select:invalid {
 		line-height: 1.25rem;
 	}
 }
+
 @media (min-width: 768px) {
 	.md\:h-32 {
 		height: 8rem;
@@ -1345,6 +1368,7 @@ select:invalid {
 		width: 8rem;
 	}
 }
+
 @media (min-width: 1024px) {
 	.lg\:h-64 {
 		height: 16rem;

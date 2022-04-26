@@ -8,27 +8,27 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateCharacter extends Component
 {
+
     public string $name = '';
 
     protected $rules = [
-        'name' => 'required|string|min:1|max:191',
+        'name' => 'required|string|min:1|max:191'
     ];
+
 
     public function createCharacter()
     {
         $user = Auth::user();
-        if (count($user->characters) >= 20) {
-            session()->flash(
-                'max',
-                'You have reached your character max of 20.'
-            );
+        if(count($user->characters) >= 20)
+        {
+            session()->flash('max', 'You have reached your character max of 20.');
             return;
         }
 
         $this->validate();
         Character::create([
             'name' => $this->name,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::id()
         ]);
         session()->flash('message', 'Character created successfully');
         $this->name = '';

@@ -20,4 +20,5 @@ class Character extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
 }
