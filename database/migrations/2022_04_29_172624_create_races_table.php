@@ -82,9 +82,9 @@ class CreateRacesTable extends Migration
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            // [
-            //     'name' => 'Dwarf',
-            // ],
+            [
+                'name' => 'Dwarf',
+            ],
             // [
             //     'name' => 'Elf',
             // ],
