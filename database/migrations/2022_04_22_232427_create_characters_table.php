@@ -19,6 +19,14 @@ class CreateCharactersTable extends Migration
 
             $table->string('name');
 
+
+            $table->tinyInteger('str_score')->default(10);
+            $table->tinyInteger('dex_score')->default(10);
+            $table->tinyInteger('con_score')->default(10);
+            $table->tinyInteger('int_score')->default(10);
+            $table->tinyInteger('wis_score')->default(10);
+            $table->tinyInteger('cha_score')->default(10);
+
             $table->timestamps();
         });
     }

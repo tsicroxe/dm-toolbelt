@@ -5,11 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Character;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\Models\Race;
 
 class CharacterViewer extends Component
 {
 
     public Character $character;
+    public Race $race;
 
     protected $rules = [
 
@@ -28,6 +30,7 @@ class CharacterViewer extends Component
         abort_if(Auth::id() !== $character->user_id, 404);
 
         $this->character = $character;
+        $this->race = $character->race;
     }
 
     public function render()
