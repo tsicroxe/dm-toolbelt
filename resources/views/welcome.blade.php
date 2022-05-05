@@ -10,7 +10,9 @@
             @auth
                 <p>You are logged in</p>
             @else
-                <p>Message from the creator</p>
+                <p>Welcome to the DM's Toolbelt</p>
+                <p>Respectfully submitted on 5/15/2022</p>
+                <p>By Andrew Banakus</p>
             @endauth
 
         </div>
