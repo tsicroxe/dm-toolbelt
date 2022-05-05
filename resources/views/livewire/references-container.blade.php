@@ -1,6 +1,6 @@
-<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+<div class="flex flex-col mt-6 min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
 
-    <div class="ml-16 flex items-center justify-center">
+    <div class="ml-16 flex flex-col gap-10 items-center justify-center">
         
 
         <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -20,27 +20,30 @@
                 Equipment
             </button>
         </div>
+        <div class="content-start">
 
-    @switch($search)
-        @case('classes')
-            <p>classes</p>
-            @break
-        @case('races')
-            <livewire:search-races />
-            @break
-        @case('backgrounds')
-            <p>backgrounds</p>
-            @break
-        @case('features')
-            <p>features</p>
-            @break
-        @case('equipment')
-            <p>equipment</p>
-            @break
-        @default
-            <p>It's not you, it's us! Something went wrong..</p>
-            @break
-    @endswitch
+        @switch($search)
+            @case('classes')
+                <p>classes</p>
+                @break
+            @case('races')
+                <livewire:search-races />
+                @break
+            @case('backgrounds')
+                <p>backgrounds</p>
+                @break
+            @case('features')
+                <p>features</p>
+                @break
+            @case('equipment')
+                <p>equipment</p>
+                @break
+            @default
+                <p>It's not you, it's us! Something went wrong..</p>
+                @break
+        @endswitch
+        </div>
+
     </div>
 
 

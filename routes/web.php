@@ -10,6 +10,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\CharacterSheetContainer;
 use App\Http\Livewire\CharacterViewer;
+use App\Http\Livewire\RaceDescription;
 use App\Http\Livewire\ReferencesContainer;
 use App\Http\Livewire\TokenizerContainer;
 
@@ -59,6 +60,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/characters', CharacterSheetContainer::class)->name('characters');
     Route::get('/characters/{character}', CharacterViewer::class)->name('character.view');
+
+    Route::get('/race/{race:name}', RaceDescription::class);
 });
 
 

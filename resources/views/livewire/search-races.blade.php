@@ -5,7 +5,7 @@
 
         @foreach($races as $race)
             <li>
-                <p>{{$race->name}}</p>
+                <a href="/race/{{$race->name}}"><p>{{$race->name}}</p></a>
             </li>
         @endforeach
 
