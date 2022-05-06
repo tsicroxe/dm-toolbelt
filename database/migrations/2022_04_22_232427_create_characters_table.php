@@ -18,6 +18,7 @@ class CreateCharactersTable extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->string('name');
+            $table->tinyInteger('level')->default(1);
 
 
             $table->tinyInteger('str_score')->default(10);

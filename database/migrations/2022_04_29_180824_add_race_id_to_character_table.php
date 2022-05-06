@@ -14,7 +14,7 @@ class AddRaceIdToCharacterTable extends Migration
     public function up()
     {
         Schema::table('characters', function (Blueprint $table) {
-            $table->foreignId('race_id')->after('user_id')->constrained();
+            $table->foreignId('race_id')->after('user_id')->nullable()->constrained();
         });
     }
 

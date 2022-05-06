@@ -891,6 +891,9 @@ select:invalid {
 .flex-shrink-0 {
 	flex-shrink: 0;
 }
+.table-auto {
+	table-layout: auto;
+}
 .table-fixed {
 	table-layout: fixed;
 }
@@ -1049,6 +1052,9 @@ select:invalid {
 }
 .p-4 {
 	padding: 1rem;
+}
+.p-2 {
+	padding: 0.5rem;
 }
 .py-12 {
 	padding-top: 3rem;

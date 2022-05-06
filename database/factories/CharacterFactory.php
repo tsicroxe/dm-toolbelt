@@ -16,8 +16,9 @@ class CharacterFactory extends Factory
     {
         return [
             'user_id' => User::class,
-            'race_id' => 1,
-            'name' => $this->faker->name()
+            'race_id' => null,
+            'name' => $this->faker->name(),
+            'level' => $this->faker->numberBetween(1, 20)
         ];
     }
 }
