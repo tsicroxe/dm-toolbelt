@@ -19,16 +19,24 @@ class CreateCharactersTable extends Migration
 
             $table->string('name');
             $table->tinyInteger('level')->default(1);
-            // Background table
+            
             $table->integer('experience')->default(0);
 
             $table->boolean('inspiration')->default(false);
-            $table->tinyInteger('armor_class')->default(10);
             
-            // Personality Traits table nullable
-            // Ideals table  nullable
-            // Bonds table nullable
-            // Flaws table nullable
+            $table->integer('current_hp')->default(0);
+            $table->integer('max_hp')->default(0);
+
+            $table->text('personality_traits')->nullable();
+            $table->text('ideals')->nullable();
+            $table->text('bonds')->nullable();
+            $table->text('flaws')->nullable();
+
+            $table->boolean('death_save_one')->default(false);
+            $table->boolean('death_save_two')->default(false);
+            $table->boolean('death_save_three')->default(false);
+
+
 
             // Ability scores
             $table->tinyInteger('str_score')->default(10);

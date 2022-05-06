@@ -61,10 +61,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/characters', CharacterSheetContainer::class)->name('characters');
     Route::get('/characters/{character}', CharacterViewer::class)->name('character.view');
 
-    Route::get('/race/{race:name}', RaceDescription::class);
 });
 
 
+
+Route::get('/race/{race:name}', RaceDescription::class);
 
 Route::get('/tokenizer', TokenizerContainer::class)->name('tokenizer');
 Route::get('/references', ReferencesContainer::class)->name('references');
