@@ -8,7 +8,9 @@
             @error('character.name') <span class="error text-red-500">{{ $message }}</span> @enderror
 
             <select name="race" wire:model="character.race_id" class="border shadow p-2 bg-white">
-                <option value=''>Choose your race</option>
+                @if(!$character->race)
+                    <option value=''>Choose your race</option>
+                @endif
                 @foreach($races as $race)
                     <option value="{{ $race->id }}">{{ $race->name }}</option>
                 @endforeach
@@ -69,6 +71,36 @@
                     </td>
                     <td>{{$cha_mod}}</td>
                 </tr>
+            </table>
+
+
+            <table class="table-auto">
+                <tr>
+                    <td>{{ $total_acrobatics}}</td>
+                    <td>
+                    <select name="race" wire:model="character.acrobatics" class="border shadow p-2 bg-white">
+                        @foreach($skill_options as $option)
+                            <option value="{{ $option}}">{{ $option }}</option>
+                        @endforeach
+                    </select>
+
+                    </td>
+                    <td>Acrobatics (Dex}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ $total_acrobatics}}</td>
+                    <td>
+                    <select name="race" wire:model="character.acrobatics" class="border shadow p-2 bg-white">
+                        @foreach($skill_options as $option)
+                            <option value="{{ $option}}">{{ $option }}</option>
+                        @endforeach
+                    </select>
+
+                    </td>
+                    <td>Acrobatics (Dex}</td>
+                </tr>
+    
             </table>
 
         </form>

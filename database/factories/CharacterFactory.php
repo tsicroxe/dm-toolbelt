@@ -19,6 +19,7 @@ class CharacterFactory extends Factory
             'race_id' => null,
             'name' => $this->faker->name(),
             'level' => $this->faker->numberBetween(1, 20)
+
         ];
     }
 }

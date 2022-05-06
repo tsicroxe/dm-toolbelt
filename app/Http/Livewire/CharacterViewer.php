@@ -11,6 +11,8 @@ class CharacterViewer extends Component
 {
 
     public Character $character;
+    public $prof_bonus = 0;
+    public $skill_options;
     public $races;
     public $race;
     public $str_mod = 0;
@@ -20,18 +22,22 @@ class CharacterViewer extends Component
     public $wis_mod = 0;
     public $cha_mod = 0;
 
+    public $total_acrobatics = 0;
+
     protected $listeners = ['reRenderParent'];
 
     protected $rules = [
 
         'character.name' => 'required|string|min:5|max:191',
-        'character.race_id' => 'integer',
+        'character.race_id' => 'required|integer',
         'character.str_score' => 'integer|between:0,100',
         'character.dex_score' => 'integer|between:0,100',
         'character.con_score' => 'integer|between:0,100',
         'character.int_score' => 'integer|between:0,100',
         'character.wis_score' => 'integer|between:0,100',
         'character.cha_score' => 'integer|between:0,100',
+        'character.acrobatics' => 'string',
+
 
     ];
 
@@ -54,6 +60,38 @@ class CharacterViewer extends Component
         return floor(($score - 10) / 2);
     }
 
+    public function calculatProfBonus($level)
+    {
+        if($level < 5){
+            return 2;
+        }
+        elseif($level < 9){
+            return 3;
+        }
+        elseif($level < 13){
+            return 4;
+        }
+        elseif($level < 17){
+            return 5;
+        }
+        elseif($level <= 20){
+            return 5;
+        }
+            return 2;
+    }
+
+    public function calculateSkill($mod_bonus, $trained_status): int
+    {
+        switch ($trained_status) {
+            case 'trained':
+                return $mod_bonus + $this->prof_bonus;
+            case 'expertise':
+                return $mod_bonus + ($this->prof_bonus * 2);
+            default:
+                return $mod_bonus;
+            }
+    }
+
     public function mount(Character $character): void
     {
         abort_if(Auth::id() !== $character->user_id, 404);
@@ -61,6 +99,9 @@ class CharacterViewer extends Component
         $this->character = $character;
         $this->race = $character->race;
         $this->races = Race::all();
+        $this->skill_options = Character::ALLOWED_SKILL_VALUES;
+        
+        $this->prof_bonus = $this->calculatProfBonus($character->level);
 
         $this->str_mod = $this->calculateModifier($character->str_score);
         $this->dex_mod = $this->calculateModifier($character->dex_score);
@@ -69,6 +110,7 @@ class CharacterViewer extends Component
         $this->wis_mod = $this->calculateModifier($character->wis_score);
         $this->cha_mod = $this->calculateModifier($character->cha_score);
 
+        $this->total_acrobatics = $this->calculateSkill($this->dex_mod, $character->acrobatics);
     }
 
     public function render()

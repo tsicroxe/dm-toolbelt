@@ -9,6 +9,8 @@ class Character extends Model
 {
     use HasFactory;
 
+    public const ALLOWED_SKILL_VALUES = ['untrained', 'trained', 'expertise'];
+
     protected $guarded = ['id'];
 
     /**
