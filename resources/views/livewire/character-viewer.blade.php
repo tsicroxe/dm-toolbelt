@@ -126,7 +126,7 @@
                     </thead>
                     <tr>
                         <td>
-                        <select name="race" wire:model="character.acrobatics" class="border shadow p-2 bg-white">
+                        <select name="acrobatics" wire:model="character.acrobatics" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -138,7 +138,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.animal_handling" class="border shadow p-2 bg-white">
+                        <select name="animal_handling" wire:model="character.animal_handling" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -150,7 +150,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.arcana" class="border shadow p-2 bg-white">
+                        <select name="arcana" wire:model="character.arcana" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -162,7 +162,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.athletics" class="border shadow p-2 bg-white">
+                        <select name="athletics" wire:model="character.athletics" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -174,7 +174,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.deception" class="border shadow p-2 bg-white">
+                        <select name="deception" wire:model="character.deception" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -186,7 +186,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.history" class="border shadow p-2 bg-white">
+                        <select name="history" wire:model="character.history" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -198,7 +198,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.insight" class="border shadow p-2 bg-white">
+                        <select name="insight" wire:model="character.insight" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -210,7 +210,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.intimidation" class="border shadow p-2 bg-white">
+                        <select name="intimidation" wire:model="character.intimidation" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -222,7 +222,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.investigation" class="border shadow p-2 bg-white">
+                        <select name="investigation" wire:model="character.investigation" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -234,7 +234,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.medicine" class="border shadow p-2 bg-white">
+                        <select name="medicine" wire:model="character.medicine" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -246,7 +246,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.nature" class="border shadow p-2 bg-white">
+                        <select name="nature" wire:model="character.nature" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -258,7 +258,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.perception" class="border shadow p-2 bg-white">
+                        <select name="perception" wire:model="character.perception" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -270,7 +270,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.performance" class="border shadow p-2 bg-white">
+                        <select name="performance" wire:model="character.performance" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -282,7 +282,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.persuasion" class="border shadow p-2 bg-white">
+                        <select name="persuasion" wire:model="character.persuasion" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -294,7 +294,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.religion" class="border shadow p-2 bg-white">
+                        <select name="religion" wire:model="character.religion" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -306,7 +306,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.sleight_of_hand" class="border shadow p-2 bg-white">
+                        <select name="sleight_of_hand" wire:model="character.sleight_of_hand" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -318,7 +318,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.stealth" class="border shadow p-2 bg-white">
+                        <select name="stealth" wire:model="character.stealth" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
@@ -330,7 +330,7 @@
                     </tr>
 
                     <td>
-                        <select name="race" wire:model="character.survival" class="border shadow p-2 bg-white">
+                        <select name="survival" wire:model="character.survival" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
                                 <option value="{{ $option}}">{{ $option }}</option>
                             @endforeach
