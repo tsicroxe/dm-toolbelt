@@ -30,4 +30,13 @@ class Character extends Model
         return $this->belongsTo(Race::class);
     }
     
+
+    /*
+     * The classes/guilds that belong to this character
+     */
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class)->withPivot('level');
+    }
+
 }

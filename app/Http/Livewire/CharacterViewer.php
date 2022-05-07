@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Character;
+use App\Models\CharacterGuild;
+use App\Models\Guild;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Race;
@@ -11,6 +13,8 @@ class CharacterViewer extends Component
 {
 
     public Character $character;
+    public $guilds;
+    public $character_guilds;
     public $skill_options;
     public $races;
     public $race;
@@ -48,7 +52,54 @@ class CharacterViewer extends Component
     public $total_stealth = 0;
     public $total_survival = 0;
 
+    public function mount(Character $character): void
+    {
+        abort_if(Auth::id() !== $character->user_id, 404);
 
+        // Demographics
+        $this->character = $character;
+        $this->guilds = Guild::all();
+        $this->race = $character->race;
+        $this->races = Race::all();
+        $this->skill_options = Character::ALLOWED_SKILL_VALUES;
+        $this->character_guilds = $character->guilds;
+        
+        
+        $this->prof_bonus = $this->calculatProfBonus($character->level);
+
+        // Ability modifiers
+        $this->str_mod = $this->calculateModifier($character->str_score);
+        $this->dex_mod = $this->calculateModifier($character->dex_score);
+        $this->con_mod = $this->calculateModifier($character->con_score);
+        $this->int_mod = $this->calculateModifier($character->int_score);
+        $this->wis_mod = $this->calculateModifier($character->wis_score);
+        $this->cha_mod = $this->calculateModifier($character->cha_score);
+
+        $this->armor_class = $this->calculateArmorClass();
+        $this->initiative = $this->dex_mod;
+        
+
+        // Skills
+        $this->total_acrobatics = $this->calculateSkill($this->dex_mod, $character->acrobatics);
+        $this->total_animal_handling = $this->calculateSkill($this->wis_mod, $character->animal_handling);
+        $this->total_arcana = $this->calculateSkill($this->int_mod, $character->arcana);
+        $this->total_athletics = $this->calculateSkill($this->str_mod, $character->athletics);
+        $this->total_deception = $this->calculateSkill($this->cha_mod, $character->deception);
+        $this->total_history = $this->calculateSkill($this->int_mod, $character->history);
+        $this->total_insight = $this->calculateSkill($this->wis_mod, $character->insight);
+        $this->total_intimidation = $this->calculateSkill($this->cha_mod, $character->intimidation);
+        $this->total_investigation = $this->calculateSkill($this->int_mod, $character->investigation);
+        $this->total_medicine = $this->calculateSkill($this->wis_mod, $character->medicine);
+        $this->total_nature = $this->calculateSkill($this->int_mod, $character->nature);
+        $this->total_perception = $this->calculateSkill($this->wis_mod, $character->perception);
+        $this->total_performance = $this->calculateSkill($this->cha_mod, $character->performance);
+        $this->total_persuasion = $this->calculateSkill($this->cha_mod, $character->persuasion);
+        $this->total_religion = $this->calculateSkill($this->int_mod, $character->religion);
+        $this->total_sleight_of_hand = $this->calculateSkill($this->dex_mod, $character->sleight_of_hand);
+        $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
+        $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
+    
+    }
 
 
     protected $listeners = ['reRenderParent'];
@@ -150,52 +201,7 @@ class CharacterViewer extends Component
             }
     }
 
-    public function mount(Character $character): void
-    {
-        abort_if(Auth::id() !== $character->user_id, 404);
-
-        // Demographics
-        $this->character = $character;
-        $this->race = $character->race;
-        $this->races = Race::all();
-        $this->skill_options = Character::ALLOWED_SKILL_VALUES;
-        
-        
-        $this->prof_bonus = $this->calculatProfBonus($character->level);
-
-        // Ability modifiers
-        $this->str_mod = $this->calculateModifier($character->str_score);
-        $this->dex_mod = $this->calculateModifier($character->dex_score);
-        $this->con_mod = $this->calculateModifier($character->con_score);
-        $this->int_mod = $this->calculateModifier($character->int_score);
-        $this->wis_mod = $this->calculateModifier($character->wis_score);
-        $this->cha_mod = $this->calculateModifier($character->cha_score);
-
-        $this->armor_class = $this->calculateArmorClass();
-        $this->initiative = $this->dex_mod;
-        
-
-        // Skills
-        $this->total_acrobatics = $this->calculateSkill($this->dex_mod, $character->acrobatics);
-        $this->total_animal_handling = $this->calculateSkill($this->wis_mod, $character->animal_handling);
-        $this->total_arcana = $this->calculateSkill($this->int_mod, $character->arcana);
-        $this->total_athletics = $this->calculateSkill($this->str_mod, $character->athletics);
-        $this->total_deception = $this->calculateSkill($this->cha_mod, $character->deception);
-        $this->total_history = $this->calculateSkill($this->int_mod, $character->history);
-        $this->total_insight = $this->calculateSkill($this->wis_mod, $character->insight);
-        $this->total_intimidation = $this->calculateSkill($this->cha_mod, $character->intimidation);
-        $this->total_investigation = $this->calculateSkill($this->int_mod, $character->investigation);
-        $this->total_medicine = $this->calculateSkill($this->wis_mod, $character->medicine);
-        $this->total_nature = $this->calculateSkill($this->int_mod, $character->nature);
-        $this->total_perception = $this->calculateSkill($this->wis_mod, $character->perception);
-        $this->total_performance = $this->calculateSkill($this->cha_mod, $character->performance);
-        $this->total_persuasion = $this->calculateSkill($this->cha_mod, $character->persuasion);
-        $this->total_religion = $this->calculateSkill($this->int_mod, $character->religion);
-        $this->total_sleight_of_hand = $this->calculateSkill($this->dex_mod, $character->sleight_of_hand);
-        $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
-        $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
-    
-    }
+   
 
     public function render()
     {

@@ -1289,6 +1289,11 @@ select:invalid {
 	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
 }
 
+.hover\:bg-blue-700:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(29, 78, 216, var(--tw-bg-opacity));
+}
+
 .hover\:text-indigo-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(99, 102, 241, var(--tw-text-opacity));
