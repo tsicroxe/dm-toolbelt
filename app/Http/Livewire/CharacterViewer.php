@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Character;
-use App\Models\CharacterGuild;
 use App\Models\Guild;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -61,10 +60,10 @@ class CharacterViewer extends Component
         $this->races = Race::all();
         $this->skill_options = Character::ALLOWED_SKILL_VALUES;
 
-        // $this->character->guilds()->attach(2, ['level' => 5]);
-        // $this->character->guilds()->detach(2);
-        
-        $this->prof_bonus = $this->calculatProfBonus($character->level);
+        $this->level = $this->calculateTotalLevel($this->character->guilds);
+
+
+        $this->prof_bonus = $this->calculatProfBonus($this->level);
 
         // Ability modifiers
         $this->str_mod = $this->calculateModifier($character->str_score);
@@ -76,7 +75,7 @@ class CharacterViewer extends Component
 
         $this->armor_class = $this->calculateArmorClass();
         $this->initiative = $this->dex_mod;
-        
+
 
         // Skills
         $this->total_acrobatics = $this->calculateSkill($this->dex_mod, $character->acrobatics);
@@ -97,7 +96,6 @@ class CharacterViewer extends Component
         $this->total_sleight_of_hand = $this->calculateSkill($this->dex_mod, $character->sleight_of_hand);
         $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
         $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
-    
     }
 
 
@@ -150,7 +148,7 @@ class CharacterViewer extends Component
     {
         $this->validateOnly($propertyName);
         $this->character->save();
-        $this->emit('reRenderParent'); 
+        $this->emit('reRenderParent');
     }
 
 
@@ -166,40 +164,48 @@ class CharacterViewer extends Component
         return floor(($score - 10) / 2);
     }
 
+    public function calculateTotalLevel($guilds){
+        if($guilds->count() < 1){
+            return 1;
+        }
+        $level = 0;
+        foreach($guilds as $guild){
+            $level += $guild->pivot?->level;
+        }
+        return $level;
+    }
+
     public function calculatProfBonus($level)
     {
-        if($level < 5){
+        if ($level < 5) {
             return 2;
-        }
-        elseif($level < 9){
+        } elseif ($level < 9) {
             return 3;
-        }
-        elseif($level < 13){
+        } elseif ($level < 13) {
             return 4;
-        }
-        elseif($level < 17){
+        } elseif ($level < 17) {
+            return 5;
+        } elseif ($level <= 20) {
             return 5;
         }
-        elseif($level <= 20){
-            return 5;
-        }
-            return 2;
+        return 2;
     }
 
     public function addGuildAndLevel()
     {
-        if(!$this->guildForm['guild'] && !$this->guildForm['level']){
+        if (!$this->guildForm['guild'] && !$this->guildForm['level']) {
 
             return;
         }
         $this->character->guilds()->attach($this->guildForm['guild'], ['level' => $this->guildForm['level']]);
 
-        $this->emit('reRenderParent'); 
+        $this->emit('reRenderParent');
     }
 
-    public function deleteGuild($guildId){
+    public function deleteGuild($guildId)
+    {
         $this->character->guilds()->detach($guildId);
-        $this->emit('reRenderParent'); 
+        $this->emit('reRenderParent');
     }
 
     public function calculateArmorClass()
@@ -216,10 +222,10 @@ class CharacterViewer extends Component
                 return $mod_bonus + ($this->prof_bonus * 2);
             default:
                 return $mod_bonus;
-            }
+        }
     }
 
-   
+
 
     public function render()
     {
