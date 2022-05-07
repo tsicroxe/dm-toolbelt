@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
-class CharacterFactory extends Factory
+
+class CharacterGuildFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,11 +15,9 @@ class CharacterFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::class,
-            'race_id' => null,
-            'name' => $this->faker->name(),
+            'character_id' => Character::class,
+            'guild_id' => $this->faker->numberBetween(1, 9),
             'level' => $this->faker->numberBetween(1, 20)
-
         ];
     }
 }

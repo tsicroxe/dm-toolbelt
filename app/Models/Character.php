@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Auth;
 
 class Character extends Model
 {
     use HasFactory;
+
+    public const ALLOWED_SKILL_VALUES = ['untrained', 'trained', 'expertise'];
+    public const BASE_AC = 10;
 
     protected $guarded = ['id'];
 
@@ -20,5 +21,22 @@ class Character extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the race of the character.
+     */
+    public function race()
+    {
+        return $this->belongsTo(Race::class);
+    }
     
+
+    /*
+     * The classes/guilds that belong to this character
+     */
+    public function guilds()
+    {
+        return $this->belongsToMany(Guild::class)->withPivot('level');
+    }
+
 }
