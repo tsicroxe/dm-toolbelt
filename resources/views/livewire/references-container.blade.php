@@ -36,7 +36,7 @@
                 <p>features</p>
                 @break
             @case('equipment')
-                <p>equipment</p>
+                <livewire:search-equipment />
                 @break
             @default
                 <p>It's not you, it's us! Something went wrong..</p>

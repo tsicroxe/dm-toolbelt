@@ -194,10 +194,14 @@ class CharacterViewer extends Component
     public function addGuildAndLevel()
     {
         if (!$this->guildForm['guild'] && !$this->guildForm['level']) {
-
             return;
         }
-        $this->character->guilds()->attach($this->guildForm['guild'], ['level' => $this->guildForm['level']]);
+        if ($this->character->guilds->contains($this->guildForm['guild'])) {
+            $this->character->guilds()->detach($this->guildForm['guild']);
+            $this->character->guilds()->attach($this->guildForm['guild'], ['level' => $this->guildForm['level']]);
+        } else {
+            $this->character->guilds()->attach($this->guildForm['guild'], ['level' => $this->guildForm['level']]);
+        }
 
         $this->emit('reRenderParent');
     }

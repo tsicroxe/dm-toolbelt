@@ -1,7 +1,7 @@
 <div>
     <input type="text" wire:model="searchTerm" />
 
-    <ul>
+    <ul class="flex items-center">
 
         @foreach($races as $race)
             <li>
