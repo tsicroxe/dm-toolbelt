@@ -1,7 +1,6 @@
 <div class="flex flex-col min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
     <div class="ml-16 flex flex-col items-start justify-start border-2">
 
-        <form wire:submit.prevent="save">
             <div id="demographics" class="m-5">
 
             <div class="flex flex-row">
@@ -343,7 +342,6 @@
 
                 </table>
 
-            </form>
         </div>
         
     </div>

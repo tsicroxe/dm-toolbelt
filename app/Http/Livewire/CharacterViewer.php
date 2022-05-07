@@ -55,7 +55,6 @@ class CharacterViewer extends Component
     public function mount(Character $character): void
     {
         abort_if(Auth::id() !== $character->user_id, 404);
-
         // Demographics
         $this->character = $character;
         $this->guilds = Guild::all();
@@ -63,7 +62,8 @@ class CharacterViewer extends Component
         $this->races = Race::all();
         $this->skill_options = Character::ALLOWED_SKILL_VALUES;
         $this->character_guilds = $character->guilds;
-        
+        // $this->character->guilds()->attach(2, ['level' => 5]);
+        // $this->character->guilds()->detach(2);
         
         $this->prof_bonus = $this->calculatProfBonus($character->level);
 
