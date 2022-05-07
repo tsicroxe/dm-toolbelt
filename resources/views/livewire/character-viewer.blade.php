@@ -1,5 +1,5 @@
 <div class="flex flex-col min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
-    <div class="ml-16 flex flex-col items-start justify-start border-2">
+    <div class="ml-16 flex flex-col items-center justify-start border-2">
 
             <div id="demographics" class="m-5">
 
@@ -21,6 +21,44 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="flex flex-col justify-start">
+                
+                @foreach($character->guilds as $guild)
+                    <div class="flex flex-row">
+
+                        <p>{{$guild->name}} {{$guild->pivot?->level}}</p> 
+                        <button wire:click="deleteGuild({{$guild->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                            X
+                        </button>
+                    </div>
+
+                @endforeach
+
+                <form wire:submit.prevent="addGuildAndLevel">
+
+                    <label class="inline-block w-32 font-bold">Class:</label>
+                    <select name="guild" wire:model="guildForm.guild" class="border shadow p-2 bg-white">
+                        @foreach($guilds as $guild)
+                            <option value="{{ $guild->id }}">{{ $guild->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <select name="level" wire:model="guildForm.level" class="border shadow p-2 bg-white">
+                        @for ($i = 0; $i <= 20; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
+
+                    @error('guildForm.guild') <span class="error">{{ $message }}</span> @enderror
+                    @error('guildForm.level') <span class="error">{{ $message }}</span> @enderror
+
+                    <button type="submit">Add Class/Level</button>
+
+                </form>
+            </div>
+
+
             <div class="flex flex-row">
                 <label>Level: <input type="text" wire:model.debounce.500ms="character.level" />
                 @error('character.level') <span class="error text-red-500">{{ $message }}</span> @enderror</label>

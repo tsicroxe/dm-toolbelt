@@ -17,7 +17,7 @@ class CharacterViewer extends Component
     public $character_guilds;
     public $skill_options;
     public $races;
-    public $race;
+    public $guildForm;
 
     // Calculated attributes
     public $prof_bonus = 0;
@@ -56,12 +56,11 @@ class CharacterViewer extends Component
     {
         abort_if(Auth::id() !== $character->user_id, 404);
         // Demographics
-        $this->character = $character;
+        $this->character = $character->load(['guilds', 'race']);
         $this->guilds = Guild::all();
-        $this->race = $character->race;
         $this->races = Race::all();
         $this->skill_options = Character::ALLOWED_SKILL_VALUES;
-        $this->character_guilds = $character->guilds;
+
         // $this->character->guilds()->attach(2, ['level' => 5]);
         // $this->character->guilds()->detach(2);
         
@@ -140,6 +139,9 @@ class CharacterViewer extends Component
         'character.current_hp' => 'required|integer|lte:character.max_hp',
         'character.max_hp' => 'required|integer',
 
+        'guildForm.guild' => 'required|integer|exists:guilds,id',
+        'guildForm.level' => 'required|integer|between:1,20'
+
 
 
     ];
@@ -182,6 +184,22 @@ class CharacterViewer extends Component
             return 5;
         }
             return 2;
+    }
+
+    public function addGuildAndLevel()
+    {
+        if(!$this->guildForm['guild'] && !$this->guildForm['level']){
+
+            return;
+        }
+        $this->character->guilds()->attach($this->guildForm['guild'], ['level' => $this->guildForm['level']]);
+
+        $this->emit('reRenderParent'); 
+    }
+
+    public function deleteGuild($guildId){
+        $this->character->guilds()->detach($guildId);
+        $this->emit('reRenderParent'); 
     }
 
     public function calculateArmorClass()
