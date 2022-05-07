@@ -13,7 +13,10 @@
                     @foreach($characters as $character)
                     <tr class="h-16">
                             <td class="hover:bg-green-300 cursor-pointer" onclick="window.location='/characters/{{$character->id}}'">
-                                {{$character->name}} - Level {{$character->level}} {{$character->race->name ?? 'Raceless'}} {{$character->class->name ?? 'Classless'}}
+                                {{$character->name}} - {{$character->race->name ?? ''}} 
+                                @foreach($character->guilds as $guild)
+                                <span>{{$guild->name}} {{$guild->pivot?->level}}</span>
+                                @endforeach
                             </td>
                         <td>
                         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 mr-5 rounded" wire:click="delete({{$character->id}})">
