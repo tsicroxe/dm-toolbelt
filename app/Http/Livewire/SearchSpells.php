@@ -21,6 +21,7 @@ class SearchSpells extends Component
                 ->orWhere('level', 'like', $searchTerm)
                 ->orWhere('school', 'like', $searchTerm)
                 ->orWhere('damage_type', 'like', $searchTerm)
+                ->orWhere('cast_time', 'like', $searchTerm)
                 ->paginate(10);
         }
 

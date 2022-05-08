@@ -1,5 +1,5 @@
 <div class="w-full">
-    <input type="text" wire:model="searchTerm" placeholder="Fireball" />
+    <input type="text" wire:model="searchTerm" placeholder="Spell name, level, school, etc." />
 
     <ul class="flex flex-col items-center mt-5">
 
