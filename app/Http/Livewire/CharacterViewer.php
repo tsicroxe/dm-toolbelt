@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Character;
+use App\Models\Equipment;
 use App\Models\Guild;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -51,11 +52,18 @@ class CharacterViewer extends Component
     public $total_stealth = 0;
     public $total_survival = 0;
 
+    public $equipment;
+    public $itemForm = [
+        'id' => '',
+        'quantity' => 1
+    ];
+
+
     public function mount(Character $character): void
     {
         abort_if(Auth::id() !== $character->user_id, 404);
         // Demographics
-        $this->character = $character->load(['guilds', 'race']);
+        $this->character = $character->load(['guilds', 'race', 'equipment']);
         $this->guilds = Guild::all();
         $this->races = Race::all();
         $this->skill_options = Character::ALLOWED_SKILL_VALUES;
@@ -96,6 +104,9 @@ class CharacterViewer extends Component
         $this->total_sleight_of_hand = $this->calculateSkill($this->dex_mod, $character->sleight_of_hand);
         $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
         $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
+
+        $this->equipment = Equipment::all()->sortBy('name');
+
     }
 
 
@@ -138,11 +149,38 @@ class CharacterViewer extends Component
         'character.max_hp' => 'required|integer',
 
         'guildForm.guild' => 'required|integer|exists:guilds,id',
-        'guildForm.level' => 'required|integer|between:1,20'
+        'guildForm.level' => 'required|integer|between:1,20',
 
-
+        'itemForm.id' => 'required|exists:equipment,id',
+        'itemForm.quantity' => 'required|exists:equipment,id',
 
     ];
+
+
+
+
+    public function addItemAndQuantity()
+    {
+        if (!$this->itemForm['id'] && !$this->itemForm['quantity']) {
+            return;
+        }
+        if ($this->character->equipment->contains($this->itemForm['id'])) {
+            $this->character->equipment()->detach($this->itemForm['id']);
+            $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
+        } else {
+            $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
+        }
+
+        $this->emit('reRenderParent');
+    }
+
+    public function deleteItem($itemId)
+    {
+        $this->character->equipment()->detach($itemId);
+        $this->emit('reRenderParent');
+    }
+
+
 
     public function updated($propertyName): void
     {
