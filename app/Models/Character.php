@@ -47,4 +47,12 @@ class Character extends Model
         return $this->belongsToMany(Equipment::class)->withPivot(['quantity', 'equipped']);
     }
 
+    /*
+     * The spells known by this character
+     */
+    public function spells()
+    {
+        return $this->belongsToMany(Spell::class)->withPivot(['prepared']);
+    }
+
 }

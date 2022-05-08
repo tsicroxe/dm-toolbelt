@@ -18,4 +18,13 @@ class Spell extends Model
     public const ALLOWED_DAMAGE_TYPES = ['Fire', 'Cold', 'Healing', 'Radiant', 'Lightning', 'Poison', 'Thunder', 'Bludgeoning', 'Piercing', 'Slashing', 'Necrotic', 'Acid', 'Force', 'Psychic', null];
 
     protected $guarded = ['id'];
+
+
+    /*
+     * The characters that have a particular spell
+     */
+    public function characters()
+    {
+        return $this->belongsToMany(Character::class);
+    }
 }

@@ -73,7 +73,7 @@
                     </form>
 
                     <div class="flex flex-row mt-5">
-                        <label>Hit Points: 
+                        <label><strong>Hit Points: </strong>
                             <input class="w-12" type="text" wire:model.debounce.500ms="character.current_hp" />
                             /
                             <input class="w-12" type="text" wire:model.debounce.500ms="character.max_hp" />
@@ -92,11 +92,11 @@
 
                 <div id="ability_scores" class="mt-5">
 
-                    <table class="table-auto">
+                    <table class="table-auto text-center">
                         <thead>
                             <th>Attribute</th>
                             <th>Score</th>
-                            <th>Modifier</th>
+                            <th class='ml-4'>Modifier</th>
 
                         </thead>
                         <tr>
@@ -161,6 +161,9 @@
                         </tr>
                     </table>
                 </div>
+
+                <livewire:spells-container character="{{ $character->id }}"/>
+
 
             </div>
 

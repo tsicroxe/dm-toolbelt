@@ -22,6 +22,7 @@ class CreateEquipmentTable extends Migration
             $table->integer('cost');
             $table->integer('weight');
             $table->string('attribute');
+            $table->tinyInteger('ac_bonus')->default(0);
 
             $table->timestamps();
         });
