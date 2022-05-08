@@ -4,7 +4,7 @@
         <div class="w-1/2 bg-gray-400">
 
 
-            <div class="w-full max-w-lg text-gray-700">
+            <div class="w-full max-w-lg text-gray-700 p-5">
                 <div class="flex flex-wrap -mx-3 mb-6 mt-5">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
@@ -73,9 +73,10 @@
                     </form>
 
                     <div class="flex flex-row mt-5">
-                        <label>Hit Points: <input type="text" wire:model.debounce.500ms="character.current_hp" />
+                        <label>Hit Points: 
+                            <input class="w-12" type="text" wire:model.debounce.500ms="character.current_hp" />
                             /
-                            <input type="text" wire:model.debounce.500ms="character.max_hp" />
+                            <input class="w-12" type="text" wire:model.debounce.500ms="character.max_hp" />
 
                             @error('character.max_hp') <span class="error text-red-500">{{ $message }}</span> @enderror
                             @error('character.current_hp') <span class="error text-red-500">{{ $message }}</span> @enderror
@@ -129,7 +130,7 @@
                         </tr>
 
                         <tr>
-                            <td>Inteltrgence:</td>
+                            <td>Intelligence:</td>
                             <td><input class="w-12" type="text" wire:model.debounce.500ms="character.int_score" />
                             </td>
                             <td>{{$int_mod}}</td>
@@ -166,17 +167,17 @@
 
 
         </div>
-        <div class="w-1/2 bg-gray-500">
+        <div class="w-1/2 bg-gray-500 p-5">
 
             <div id="skills" class="mt-5">
 
-                <table class="table-auto text-center">
+                <table class="w-full text-center">
                     <thead>
                         <th>Expertise</th>
                         <th>Total</th>
                         <th>Skill</th>
                     </thead>
-                    <tr>
+                    <tr class="border">
                         <td>
                             <select name="acrobatics" wire:model="character.acrobatics" class="border shadow p-2 bg-white">
                                 @foreach($skill_options as $option)
@@ -186,9 +187,10 @@
                         </td>
                         <td>{{ $total_acrobatics}}</td>
 
-                        <td>Acrobatics (Dex}</td>
+                        <td>Acrobatics (Dex)</td>
                     </tr>
 
+                    <tr class="border">
                     <td>
                         <select name="animal_handling" wire:model="character.animal_handling" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -201,6 +203,7 @@
                     <td>Animal Handling (Wis)</td>
                     </tr>
 
+                    <tr class="border">
                     <td>
                         <select name="arcana" wire:model="character.arcana" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -213,6 +216,7 @@
                     <td>Arcana (Int)</td>
                     </tr>
 
+                    <tr class="border">
                     <td>
                         <select name="athletics" wire:model="character.athletics" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -225,6 +229,7 @@
                     <td>Athletics (Str)</td>
                     </tr>
 
+                    <tr class="border">
                     <td>
                         <select name="deception" wire:model="character.deception" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -236,6 +241,8 @@
 
                     <td>Deception (Dex)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="history" wire:model="character.history" class="border shadow p-2 bg-white">
@@ -249,6 +256,8 @@
                     <td>History (Int)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="insight" wire:model="character.insight" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -260,6 +269,8 @@
 
                     <td>Insight (Wis)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="intimidation" wire:model="character.intimidation" class="border shadow p-2 bg-white">
@@ -273,6 +284,8 @@
                     <td>Intimidation (Cha)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="investigation" wire:model="character.investigation" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -284,6 +297,8 @@
 
                     <td>Investigation (Int)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="medicine" wire:model="character.medicine" class="border shadow p-2 bg-white">
@@ -297,6 +312,8 @@
                     <td>Medicine (Wis)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="nature" wire:model="character.nature" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -308,6 +325,8 @@
 
                     <td>Nature (Int)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="perception" wire:model="character.perception" class="border shadow p-2 bg-white">
@@ -321,6 +340,8 @@
                     <td>Perception (Wis)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="performance" wire:model="character.performance" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -332,6 +353,8 @@
 
                     <td>Performance (Cha)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="persuasion" wire:model="character.persuasion" class="border shadow p-2 bg-white">
@@ -345,6 +368,8 @@
                     <td>Persuasion (Cha)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="religion" wire:model="character.religion" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -356,6 +381,8 @@
 
                     <td>Religion (Int)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="sleight_of_hand" wire:model="character.sleight_of_hand" class="border shadow p-2 bg-white">
@@ -369,6 +396,8 @@
                     <td>Sleight of Hand (Dex)</td>
                     </tr>
 
+                    <tr class="border">
+
                     <td>
                         <select name="stealth" wire:model="character.stealth" class="border shadow p-2 bg-white">
                             @foreach($skill_options as $option)
@@ -380,6 +409,8 @@
 
                     <td>Stealth (Dex)</td>
                     </tr>
+
+                    <tr class="border">
 
                     <td>
                         <select name="survival" wire:model="character.survival" class="border shadow p-2 bg-white">
@@ -396,6 +427,10 @@
                 </table>
 
             </div>
+
+
+            <livewire:add-equipment character="{{ $character->id }}"/>
+
         </div>
 
 

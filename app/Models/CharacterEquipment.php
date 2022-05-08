@@ -9,4 +9,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CharacterEquipment extends Pivot
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
 }

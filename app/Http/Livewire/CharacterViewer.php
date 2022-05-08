@@ -154,7 +154,6 @@ class CharacterViewer extends Component
 
     public function reRenderParent(): void
     {
-
         $this->mount($this->character);
         $this->render();
     }

@@ -9,6 +9,8 @@ class Equipment extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /*
      * All characters that have this equipment
      */

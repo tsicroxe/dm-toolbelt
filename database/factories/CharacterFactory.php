@@ -15,7 +15,7 @@ class CharacterFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::class,
+            'user_id' => User::factory()->create()->id,
             'race_id' => null,
             'name' => $this->faker->name(),
             'level' => $this->faker->numberBetween(1, 20)
