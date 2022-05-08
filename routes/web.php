@@ -13,6 +13,7 @@ use App\Http\Livewire\CharacterViewer;
 use App\Http\Livewire\EquipmentDescription;
 use App\Http\Livewire\RaceDescription;
 use App\Http\Livewire\ReferencesContainer;
+use App\Http\Livewire\SpellDescription;
 use App\Http\Livewire\TokenizerContainer;
 
 use Illuminate\Support\Facades\Route;
@@ -65,9 +66,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
 Route::get('/race/{race:name}', RaceDescription::class);
 Route::get('/equipment/{equipment}', EquipmentDescription::class);
+Route::get('/spells/{spell}', SpellDescription::class);
 
 Route::get('/tokenizer', TokenizerContainer::class)->name('tokenizer');
 Route::get('/references', ReferencesContainer::class)->name('references');

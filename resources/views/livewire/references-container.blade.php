@@ -16,6 +16,9 @@
             <button wire:click="setActive('equipment')" type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                 Equipment
             </button>
+            <button wire:click="setActive('spells')" type="button" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                Spells
+            </button>
         </div>
         <div class="content-start">
 
@@ -31,6 +34,9 @@
                 @break
             @case('equipment')
                 <livewire:search-equipment />
+                @break
+            @case('spells')
+                <livewire:search-spells />
                 @break
             @default
                 <p>It's not you, it's us! Something went wrong..</p>

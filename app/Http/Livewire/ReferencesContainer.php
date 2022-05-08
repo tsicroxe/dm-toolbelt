@@ -25,6 +25,9 @@ class ReferencesContainer extends Component
             case('equipment'):
                 $this->search = 'equipment';
                 break;
+            case('spells'):
+                $this->search = 'spells';
+                break;
             default:
                 $this->search = 'classes';
                 break;
