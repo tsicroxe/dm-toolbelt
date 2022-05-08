@@ -21,7 +21,8 @@ class AddEquipment extends Component
 
     ];
 
-    public function mount(Character $character){
+    public function mount(Character $character)
+    {
         $this->character = $character->load('equipment');
         $this->equipment = Equipment::all()->sortBy('name');
     }
@@ -36,7 +37,6 @@ class AddEquipment extends Component
             $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
         } else {
             $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
-
         }
 
         $this->emit('reRenderParent');

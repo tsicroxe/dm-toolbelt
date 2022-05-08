@@ -7,19 +7,18 @@
         <th>Quantity</th>
         <th>Action</th>
 
-    
-    @foreach($character->equipment as $item)
-        
+        @foreach($character->equipment as $item)
+
         <tr class="h-12">
             <td><a href="/equipment/{{$item->id}}" target="_blank">{{$item->name}}</a></td>
             <td>{{$item->pivot?->quantity}}</td>
             <td>
-            <button wire:click="deleteItem({{$item->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                            X
-                        </button>
+                <button wire:click="deleteItem({{$item->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                    X
+                </button>
             </td>
         </tr>
-    @endforeach
+        @endforeach
     </table>
 
     <form wire:submit.prevent="addItemAndQuantity">
@@ -46,6 +45,6 @@
             Add Item
         </button>
 
-        </form>
+    </form>
 
 </div>

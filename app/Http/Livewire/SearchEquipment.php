@@ -11,16 +11,15 @@ class SearchEquipment extends Component
     use WithPagination;
 
     public $searchTerm;
-    
+
     public function render()
     {
         $equipment = Equipment::orderBy('name')->paginate(10);
-        if($this->searchTerm){
+        if ($this->searchTerm) {
             $searchTerm = '%' . $this->searchTerm . '%';
             $equipment = Equipment::where('name', 'like', $searchTerm)->orderBy('name')->paginate(10);
         }
-    
+
         return view('livewire.search-equipment', ['equipment' => $equipment]);
     }
 }
-

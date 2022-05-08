@@ -48,9 +48,9 @@ class AddEquipmentTest extends TestCase
         $equipment = Equipment::factory()->create();
 
         Livewire::test(AddEquipment::class, ['character' => $character])
-        ->set('itemForm.id', $equipment->id)
-        ->set('itemForm.quantity', 5)
-        ->call('addItemAndQuantity', ['id' => $equipment->id, 'name']);
+            ->set('itemForm.id', $equipment->id)
+            ->set('itemForm.quantity', 5)
+            ->call('addItemAndQuantity', ['id' => $equipment->id, 'name']);
 
         $this->assertDatabaseHas('character_equipment', ['equipment_id' => $equipment->id, 'character_id' => $character->id]);
 
@@ -59,7 +59,4 @@ class AddEquipmentTest extends TestCase
 
         $this->assertDatabaseMissing('character_equipment', ['equipment_id' => $equipment->id, 'character_id' => $character->id]);
     }
-
-        
-
 }

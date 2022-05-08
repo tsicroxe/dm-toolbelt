@@ -15,7 +15,7 @@ class SearchRaces extends Component
     public function render()
     {
         $races = Race::paginate(10);
-        if($this->searchTerm){
+        if ($this->searchTerm) {
             $searchTerm = '%' . $this->searchTerm . '%';
             $races = Race::where('name', 'like', $searchTerm)->paginate(10);
         }
