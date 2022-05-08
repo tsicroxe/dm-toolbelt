@@ -3,10 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\Character;
+use App\Models\Equipment;
 use App\Models\Guild;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Race;
+use App\Models\Spell;
+
 
 class CharacterViewer extends Component
 {
@@ -51,18 +54,32 @@ class CharacterViewer extends Component
     public $total_stealth = 0;
     public $total_survival = 0;
 
+    public $equipment;
+    public $itemForm = [
+        'id' => 0,
+        'quantity' => 1
+    ];
+
+    public $spellForm = [
+        'id' => 0,
+        'prepared' => false
+    ];
+
+    // Spells
+    public $spells;
+    public $cantrips;
+    public $level_one_spells;
+
     public function mount(Character $character): void
     {
         abort_if(Auth::id() !== $character->user_id, 404);
+
         // Demographics
-        $this->character = $character->load(['guilds', 'race']);
+        $this->character = $character->load(['guilds', 'race', 'equipment', 'spells']);
         $this->guilds = Guild::all();
         $this->races = Race::all();
         $this->skill_options = Character::ALLOWED_SKILL_VALUES;
-
         $this->level = $this->calculateTotalLevel($this->character->guilds);
-
-
         $this->prof_bonus = $this->calculatProfBonus($this->level);
 
         // Ability modifiers
@@ -96,8 +113,23 @@ class CharacterViewer extends Component
         $this->total_sleight_of_hand = $this->calculateSkill($this->dex_mod, $character->sleight_of_hand);
         $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
         $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
-    }
 
+        $this->equipment = Equipment::all()->sortBy('name');
+        $this->spells = Spell::all()->sortBy('name')->sortBy('level');
+
+        $this->cantrips = $character->spells->where('level', 0);
+        $this->spells_level_one = $character->spells->where('level', 1);
+        $this->spells_level_two = $character->spells->where('level', 2);
+        $this->spells_level_three = $character->spells->where('level', 3);
+        $this->spells_level_four = $character->spells->where('level', 4);
+        $this->spells_level_five = $character->spells->where('level', 5);
+        $this->spells_level_six = $character->spells->where('level', 6);
+        $this->spells_level_seven = $character->spells->where('level', 7);
+        $this->spells_level_eight = $character->spells->where('level', 8);
+        $this->spells_level_nine = $character->spells->where('level', 9);
+
+
+    }
 
     protected $listeners = ['reRenderParent'];
 
@@ -138,11 +170,54 @@ class CharacterViewer extends Component
         'character.max_hp' => 'required|integer',
 
         'guildForm.guild' => 'required|integer|exists:guilds,id',
-        'guildForm.level' => 'required|integer|between:1,20'
+        'guildForm.level' => 'required|integer|between:1,20',
 
+        'itemForm.id' => 'required|integer|exists:equipment,id',
+        'itemForm.quantity' => 'required|integer|exists:equipment,id',
 
-
+        'spellForm.id' => 'required|exists:spells,id',
     ];
+
+
+
+
+    public function addItemAndQuantity()
+    {
+        if (!$this->itemForm['id'] && !$this->itemForm['quantity']) {
+            return;
+        }
+        if ($this->character->equipment->contains($this->itemForm['id'])) {
+            $this->character->equipment()->detach($this->itemForm['id']);
+            $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
+        } else {
+            $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
+        }
+
+        $this->emit('reRenderParent');
+    }
+
+    public function addSpell()
+    {
+        if (!$this->spellForm['id']) {
+            return;
+        }
+        if ($this->character->spells->contains($this->spellForm['id'])) {
+            $this->character->spells()->detach($this->spellForm['id']);
+            $this->character->spells()->attach($this->spellForm['id']);
+        } else {
+            $this->character->spells()->attach($this->spellForm['id']);
+        }
+
+        $this->emit('reRenderParent');
+    }
+
+    public function deleteItem($itemId)
+    {
+        $this->character->equipment()->detach($itemId);
+        $this->emit('reRenderParent');
+    }
+
+
 
     public function updated($propertyName): void
     {
@@ -208,6 +283,12 @@ class CharacterViewer extends Component
     public function deleteGuild($guildId)
     {
         $this->character->guilds()->detach($guildId);
+        $this->emit('reRenderParent');
+    }
+
+    public function deleteSpell($spellId)
+    {
+        $this->character->spells()->detach($spellId);
         $this->emit('reRenderParent');
     }
 

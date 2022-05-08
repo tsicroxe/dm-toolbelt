@@ -73,7 +73,7 @@
                     </form>
 
                     <div class="flex flex-row mt-5">
-                        <label>Hit Points: 
+                        <label><strong>Hit Points: </strong>
                             <input class="w-12" type="text" wire:model.debounce.500ms="character.current_hp" />
                             /
                             <input class="w-12" type="text" wire:model.debounce.500ms="character.max_hp" />
@@ -92,11 +92,11 @@
 
                 <div id="ability_scores" class="mt-5">
 
-                    <table class="table-auto">
+                    <table class="table-auto text-center">
                         <thead>
                             <th>Attribute</th>
                             <th>Score</th>
-                            <th>Modifier</th>
+                            <th class='ml-4'>Modifier</th>
 
                         </thead>
                         <tr>
@@ -162,6 +162,70 @@
                     </table>
                 </div>
 
+
+                <div class="flex flex-col w-full items-start gap-10 mt-5">
+
+                    <p class="text-4xl">Spells</p>
+
+                    <div>
+
+                        <form wire:submit.prevent="addSpell">
+
+                            <select name="name" wire:model="spellForm.id" class="border shadow p-2 bg-white">
+                                <option value="">Add a Spell</option>
+
+                                @foreach($spells as $spell)
+                                <option value="{{ $spell->id }}">[{{$spell->level}}] {{ $spell->name }}</option>
+                                @endforeach
+                            </select>
+
+
+                            @error('spellForm.name') <span class="error">{{ $message }}</span> @enderror
+                            @error('spellForm.prepared') <span class="error">{{ $message }}</span> @enderror
+
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Add Spell
+                            </button>
+
+                        </form>
+
+                    </div>
+
+
+                    <table class="w-full table-fixed text-center">
+                        <th>Level</th>
+                        <th>Spell Name</th>
+                        <th>Prepared</th>
+
+
+                        @foreach($character->spells->sortBy('level') as $char_spell)
+                            <tr>
+                            <td>{{$char_spell->level}}</td>
+                            <td><a href="/spells/{{$char_spell->id}}">{{$char_spell->name}}</a></td>
+
+                            <td><input type="checkbox"/> </td>
+
+                            <td>
+                                <button wire:click="deleteSpell({{$char_spell->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                    X
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                    
+                    
+                    
+                    </table>
+
+
+
+
+
+
+                </div>
+
+
             </div>
 
 
@@ -191,237 +255,237 @@
                     </tr>
 
                     <tr class="border">
-                    <td>
-                        <select name="animal_handling" wire:model="character.animal_handling" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_animal_handling}}</td>
+                        <td>
+                            <select name="animal_handling" wire:model="character.animal_handling" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_animal_handling}}</td>
 
-                    <td>Animal Handling (Wis)</td>
+                        <td>Animal Handling (Wis)</td>
                     </tr>
 
                     <tr class="border">
-                    <td>
-                        <select name="arcana" wire:model="character.arcana" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_arcana}}</td>
+                        <td>
+                            <select name="arcana" wire:model="character.arcana" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_arcana}}</td>
 
-                    <td>Arcana (Int)</td>
+                        <td>Arcana (Int)</td>
                     </tr>
 
                     <tr class="border">
-                    <td>
-                        <select name="athletics" wire:model="character.athletics" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_athletics}}</td>
+                        <td>
+                            <select name="athletics" wire:model="character.athletics" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_athletics}}</td>
 
-                    <td>Athletics (Str)</td>
+                        <td>Athletics (Str)</td>
                     </tr>
 
                     <tr class="border">
-                    <td>
-                        <select name="deception" wire:model="character.deception" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_deception}}</td>
+                        <td>
+                            <select name="deception" wire:model="character.deception" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_deception}}</td>
 
-                    <td>Deception (Dex)</td>
-                    </tr>
-
-                    <tr class="border">
-
-                    <td>
-                        <select name="history" wire:model="character.history" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_history}}</td>
-
-                    <td>History (Int)</td>
+                        <td>Deception (Dex)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="insight" wire:model="character.insight" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_insight}}</td>
+                        <td>
+                            <select name="history" wire:model="character.history" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_history}}</td>
 
-                    <td>Insight (Wis)</td>
+                        <td>History (Int)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="intimidation" wire:model="character.intimidation" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_intimidation}}</td>
+                        <td>
+                            <select name="insight" wire:model="character.insight" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_insight}}</td>
 
-                    <td>Intimidation (Cha)</td>
+                        <td>Insight (Wis)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="investigation" wire:model="character.investigation" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_investigation}}</td>
+                        <td>
+                            <select name="intimidation" wire:model="character.intimidation" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_intimidation}}</td>
 
-                    <td>Investigation (Int)</td>
+                        <td>Intimidation (Cha)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="medicine" wire:model="character.medicine" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_medicine}}</td>
+                        <td>
+                            <select name="investigation" wire:model="character.investigation" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_investigation}}</td>
 
-                    <td>Medicine (Wis)</td>
+                        <td>Investigation (Int)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="nature" wire:model="character.nature" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_nature}}</td>
+                        <td>
+                            <select name="medicine" wire:model="character.medicine" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_medicine}}</td>
 
-                    <td>Nature (Int)</td>
+                        <td>Medicine (Wis)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="perception" wire:model="character.perception" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_perception}}</td>
+                        <td>
+                            <select name="nature" wire:model="character.nature" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_nature}}</td>
 
-                    <td>Perception (Wis)</td>
+                        <td>Nature (Int)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="performance" wire:model="character.performance" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_performance}}</td>
+                        <td>
+                            <select name="perception" wire:model="character.perception" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_perception}}</td>
 
-                    <td>Performance (Cha)</td>
+                        <td>Perception (Wis)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="persuasion" wire:model="character.persuasion" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_persuasion}}</td>
+                        <td>
+                            <select name="performance" wire:model="character.performance" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_performance}}</td>
 
-                    <td>Persuasion (Cha)</td>
+                        <td>Performance (Cha)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="religion" wire:model="character.religion" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_religion}}</td>
+                        <td>
+                            <select name="persuasion" wire:model="character.persuasion" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_persuasion}}</td>
 
-                    <td>Religion (Int)</td>
+                        <td>Persuasion (Cha)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="sleight_of_hand" wire:model="character.sleight_of_hand" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_sleight_of_hand}}</td>
+                        <td>
+                            <select name="religion" wire:model="character.religion" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_religion}}</td>
 
-                    <td>Sleight of Hand (Dex)</td>
+                        <td>Religion (Int)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="stealth" wire:model="character.stealth" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_stealth}}</td>
+                        <td>
+                            <select name="sleight_of_hand" wire:model="character.sleight_of_hand" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_sleight_of_hand}}</td>
 
-                    <td>Stealth (Dex)</td>
+                        <td>Sleight of Hand (Dex)</td>
                     </tr>
 
                     <tr class="border">
 
-                    <td>
-                        <select name="survival" wire:model="character.survival" class="border shadow p-2 bg-white">
-                            @foreach($skill_options as $option)
-                            <option value="{{ $option}}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                    <td>{{ $total_survival}}</td>
+                        <td>
+                            <select name="stealth" wire:model="character.stealth" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_stealth}}</td>
 
-                    <td>Survival (Wis)</td>
+                        <td>Stealth (Dex)</td>
+                    </tr>
+
+                    <tr class="border">
+
+                        <td>
+                            <select name="survival" wire:model="character.survival" class="border shadow p-2 bg-white">
+                                @foreach($skill_options as $option)
+                                <option value="{{ $option}}">{{ $option }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>{{ $total_survival}}</td>
+
+                        <td>Survival (Wis)</td>
                     </tr>
 
                 </table>
@@ -429,7 +493,56 @@
             </div>
 
 
-            <livewire:add-equipment character="{{ $character->id }}"/>
+            <div class="flex flex-col w-full items-start gap-10 mt-5">
+
+                <p class="text-4xl">Equipment</p>
+
+                <table class="w-full text-center">
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+
+                    @foreach($character->equipment as $item)
+
+                    <tr class="h-12">
+                        <td><a href="/equipment/{{$item->id}}" target="_blank">{{$item->name}}</a></td>
+                        <td>{{$item->pivot?->quantity}}</td>
+                        <td>
+                            <button wire:click="deleteItem({{$item->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                                X
+                            </button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </table>
+
+                <form wire:submit.prevent="addItemAndQuantity">
+
+                    <select name="name" wire:model="itemForm.id" class="border shadow p-2 bg-white">
+                        <option value="">Select an item</option>
+
+                        @foreach($equipment as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        @endforeach
+                    </select>
+
+                    <select name="quantity" wire:model="itemForm.quantity" class="border shadow p-2 bg-white">
+                        <option value="">Select quantity</option>
+
+                        @for ($i = 1; $i <= 20; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                    </select>
+
+                    @error('itemForm.name') <span class="error">{{ $message }}</span> @enderror
+                    @error('itemForm..quantity') <span class="error">{{ $message }}</span> @enderror
+
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Add Item
+                    </button>
+
+                </form>
+
+            </div>
 
         </div>
 
