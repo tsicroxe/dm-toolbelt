@@ -10,6 +10,7 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\CharacterSheetContainer;
 use App\Http\Livewire\CharacterViewer;
+use App\Http\Livewire\EquipmentDescription;
 use App\Http\Livewire\RaceDescription;
 use App\Http\Livewire\ReferencesContainer;
 use App\Http\Livewire\TokenizerContainer;
@@ -66,6 +67,7 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/race/{race:name}', RaceDescription::class);
+Route::get('/equipment/{equipment}', EquipmentDescription::class);
 
 Route::get('/tokenizer', TokenizerContainer::class)->name('tokenizer');
 Route::get('/references', ReferencesContainer::class)->name('references');

@@ -39,4 +39,12 @@ class Character extends Model
         return $this->belongsToMany(Guild::class)->withPivot('level');
     }
 
+    /*
+     * The equipment that belong to this character
+     */
+    public function equipment()
+    {
+        return $this->belongsToMany(Equipment::class)->withPivot(['quantity', 'equipped']);
+    }
+
 }
