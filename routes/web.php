@@ -8,7 +8,7 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
-use App\Http\Livewire\CharacterCreationRules;
+use App\Http\Livewire\ClassDescription;
 use App\Http\Livewire\CharacterSheetContainer;
 use App\Http\Livewire\CharacterViewer;
 use App\Http\Livewire\EquipmentDescription;
@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
+Route::get('/classes/{guild:name}', ClassDescription::class);
 Route::get('/race/{race:name}', RaceDescription::class);
 Route::get('/equipment/{equipment}', EquipmentDescription::class);
 Route::get('/spells/{spell}', SpellDescription::class);

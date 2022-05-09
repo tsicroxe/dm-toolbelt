@@ -173,7 +173,7 @@ class CharacterViewer extends Component
         'guildForm.level' => 'required|integer|between:1,20',
 
         'itemForm.id' => 'required|integer|exists:equipment,id',
-        'itemForm.quantity' => 'required|integer|exists:equipment,id',
+        'itemForm.quantity' => 'required|integer',
 
         'spellForm.id' => 'required|exists:spells,id',
     ];
@@ -186,6 +186,11 @@ class CharacterViewer extends Component
         if (!$this->itemForm['id'] && !$this->itemForm['quantity']) {
             return;
         }
+        if($this->itemForm['id'] === 0)
+        {
+            return;
+        }
+
         if ($this->character->equipment->contains($this->itemForm['id'])) {
             $this->character->equipment()->detach($this->itemForm['id']);
             $this->character->equipment()->attach($this->itemForm['id'], ['quantity' => $this->itemForm['quantity']]);
