@@ -8,6 +8,7 @@ use App\Http\Livewire\Auth\Passwords\Email;
 use App\Http\Livewire\Auth\Passwords\Reset;
 use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
+use App\Http\Livewire\CharacterCreationRules;
 use App\Http\Livewire\CharacterSheetContainer;
 use App\Http\Livewire\CharacterViewer;
 use App\Http\Livewire\EquipmentDescription;

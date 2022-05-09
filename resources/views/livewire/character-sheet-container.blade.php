@@ -1,6 +1,7 @@
 <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
     <div class="ml-16 flex flex-col items-center justify-start">
         <p class="self-start ml-12 text-3xl text-blue-400"> Your characters</p>
+        <a class="underline hover:text-red-500 hover:bg-green-500" href="https://media.wizards.com/2016/downloads/DND/SRD-OGL_V5.1.pdf" target="_blank">Click here to view the offical 5e SRD</a>
             <table class="table-fixed border-double border-4 border-sky-500 m-5 text-left">
                 <thead>
                     <tr>
