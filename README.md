@@ -1,4 +1,6 @@
-<!-- TODO: FINALIZE LATER -->
+# Dm's Toolbelt
+This project is my submission for CPSC 597 for the completion of CSU Fullerton's MSE program.
+
 
 ## Installation
 

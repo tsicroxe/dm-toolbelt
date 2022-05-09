@@ -19,9 +19,6 @@ class ReferencesContainer extends Component
             case('races'):
                 $this->search = 'races';
                 break;
-            case('features'):
-                $this->search = 'features';
-                break;
             case('equipment'):
                 $this->search = 'equipment';
                 break;

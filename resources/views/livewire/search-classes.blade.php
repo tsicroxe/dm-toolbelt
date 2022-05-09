@@ -1,12 +1,13 @@
 <div>
     <ul class="flex flex-col space-y-4 items-center">
 
-        @foreach($races as $race)
+        @foreach($classes as $class)
         <li>
-            <a href="/race/{{$race->name}}">
-                <p>{{$race->name}}</p>
+            <a href="/classes/{{$class->name}}">
+                <p>{{$class->name}}</p>
             </a>
         </li>
         @endforeach
+
     </ul>
 </div>
