@@ -16,14 +16,12 @@ class CreateGuildsTable extends Migration
     {
         Schema::create('guilds', function (Blueprint $table) {
             $table->id();
-            
+
             $table->string('name')->unique();
+            $table->text('description');
 
             $table->timestamps();
         });
-
-        DB::table('guilds')->insert($this->getGuildData());
-
     }
 
     /**
@@ -34,48 +32,5 @@ class CreateGuildsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('guilds');
-    }
-
-    protected function getGuildData()
-    {
-        return [
-            [
-                'name' => 'Bard',
-            ],
-            [
-                'name' => 'Barbarian',
-            ],
-            [
-                'name' => 'Cleric',
-            ],
-            [
-                'name' => 'Druid',
-            ],
-            [
-                'name' => 'Fighter',
-            ],
-            [
-                'name' => 'Monk',
-            ],
-            [
-                'name' => 'Paladin',
-            ],
-            [
-                'name' => 'Ranger',
-            ],
-            [
-                'name' => 'Rogue',
-            ],
-            [
-                'name' => 'Sorcerer',
-            ],
-            [
-                'name' => 'Warlock',
-            ],
-            [
-                'name' => 'Wizard',
-            ]
-            
-            ];
     }
 }
