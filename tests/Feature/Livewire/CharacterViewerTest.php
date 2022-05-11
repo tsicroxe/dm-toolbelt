@@ -167,4 +167,35 @@ class CharacterViewerTest extends TestCase
         Livewire::test(CharacterViewer::class, ['character' => $character])
             ->assertViewHas('cha_mod', 0);
     }
+
+    /** @test */
+    public function dex_mod_should_equal_intiative()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create(['user_id' => $user->id, 'dex_score' => 14]);
+
+        Livewire::test(CharacterViewer::class, ['character' => $character])
+            ->assertViewHas('dex_mod', 2)
+            ->assertViewHas('initiative', 2);
+    }
+
+
+    /** @test */
+    public function armor_class_updates_with_better_equipment()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        $character = Character::factory()->create(['user_id' => $user->id, 'dex_score' => 10]);
+        $equipment = Equipment::factory()->create([
+            'ac_bonus' => 3
+        ]);
+        CharacterEquipment::factory()->create([
+            'character_id' => $character->id,
+            'equipment_id' => $equipment->id,
+        ]);
+
+        Livewire::test(CharacterViewer::class, ['character' => $character])
+            ->assertViewHas('armor_class', 13);
+    }
 }
