@@ -20,17 +20,4 @@ class SearchRaceTest extends TestCase
         $component->assertStatus(200);
     }
 
-    /** @test */
-    public function can_filter_races()
-    {
-        $raceToFilter = Race::factory()->create();
-        $races = Race::factory()->count(2)->create();
-        
-        Livewire::test(SearchRaces::class)
-            ->set(['searchTerm' => $raceToFilter->name])
-            ->assertSee($raceToFilter->name)
-            ->assertDontSee($races[0]->name)
-            ->assertDontSee($races[1]->name);
-    }
-
 }
