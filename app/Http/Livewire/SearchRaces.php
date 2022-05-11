@@ -10,7 +10,6 @@ class SearchRaces extends Component
 {
     use WithPagination;
 
-
     public function render()
     {
         $races = Race::orderBy('name')->get();

@@ -17,11 +17,10 @@ class CreateCharacterEquipmentTable extends Migration
             $table->id();
 
 
-            $table->foreignId('character_id')->constrained();
-            $table->foreignId('equipment_id')->constrained();
+            $table->foreignId('character_id')->constrained()->onDelete("cascade");;
+            $table->foreignId('equipment_id')->constrained()->onDelete("cascade");;
 
             $table->integer('quantity')->default(1);
-            $table->boolean('equipped')->default(0);
 
             $table->timestamps();
         });

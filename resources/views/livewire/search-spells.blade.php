@@ -13,7 +13,7 @@
 
                 @foreach($spells as $spell)
                 <tr class="h-12">
-                    
+
                     <td>{{$spell->level}}</td>
                     <td class="hover:underline hover:bg-green-400">
                         <a href="/spells/{{$spell->id}}">
@@ -26,7 +26,7 @@
                     <td>{{$spell->damage_type ?? ''}}</td>
                     <td>{{$spell->cast_time}}</td>
                 </tr>
-            @endforeach
+                @endforeach
             </table>
 
             {{$spells->links()}}

@@ -20,17 +20,16 @@ class SearchEquipmentTest extends TestCase
         $component->assertStatus(200);
     }
 
-        /** @test */
-        public function can_filter_equipment()
-        {
-            $equipmentToFilter = Equipment::factory()->create();
-            $equipment = Equipment::factory()->count(2)->create();
-            
-            Livewire::test(SearchEquipment::class)
-                ->set(['searchTerm' => $equipmentToFilter->name])
-                ->assertSee($equipmentToFilter->name)
-                ->assertDontSee($equipment[0]->name)
-                ->assertDontSee($equipment[1]->name);
-        }
-    
+    /** @test */
+    public function can_filter_equipment()
+    {
+        $equipmentToFilter = Equipment::factory()->create();
+        $equipment = Equipment::factory()->count(2)->create();
+
+        Livewire::test(SearchEquipment::class)
+            ->set(['searchTerm' => $equipmentToFilter->name])
+            ->assertSee($equipmentToFilter->name)
+            ->assertDontSee($equipment[0]->name)
+            ->assertDontSee($equipment[1]->name);
+    }
 }

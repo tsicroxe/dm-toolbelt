@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Character;
+use App\Models\Spell;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
-class CharacterGuildFactory extends Factory
+class CharacterSpellFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,9 +16,8 @@ class CharacterGuildFactory extends Factory
     public function definition()
     {
         return [
-            'character_id' => Character::class,
-            'guild_id' => Guild::class,
-            'level' => $this->faker->numberBetween(1, 20)
+            'character_id' => Character::factory()->create()->id,
+            'spell_id' => Spell::factory()->create()->id,
         ];
     }
 }

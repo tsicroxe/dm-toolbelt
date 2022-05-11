@@ -1079,11 +1079,17 @@ select:invalid {
 .border {
 	border-width: 1px;
 }
+.border-2 {
+	border-width: 2px;
+}
 .border-b {
 	border-bottom-width: 1px;
 }
 .border-t {
 	border-top-width: 1px;
+}
+.border-dotted {
+	border-style: dotted;
 }
 .border-double {
 	border-style: double;
@@ -1109,6 +1115,10 @@ select:invalid {
 }
 .border-transparent {
 	border-color: transparent;
+}
+.border-green-400 {
+	--tw-border-opacity: 1;
+	border-color: rgba(52, 211, 153, var(--tw-border-opacity));
 }
 .bg-gray-50 {
 	--tw-bg-opacity: 1;
