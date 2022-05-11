@@ -4,7 +4,10 @@ namespace Tests\Feature\Livewire;
 
 use App\Http\Livewire\CharacterViewer;
 use App\Models\Character;
+use App\Models\CharacterEquipment;
+use App\Models\CharacterSpell;
 use App\Models\Equipment;
+use App\Models\Spell;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
@@ -37,6 +40,65 @@ class CharacterViewerTest extends TestCase
                 ->assertSee($equipment->name)
                 ->assertSee(5);
         }
-        /** @test  */
+
+        /** @test */
+        public function can_delete_equipment()
+        {
+            $user = User::factory()->create();
+            $this->actingAs($user);
+            $character = Character::factory()->create(['user_id' => $user->id]);
+            $equipment = Equipment::factory()->create();
+            CharacterEquipment::factory()->create([
+                'character_id' => $character->id,
+                'equipment_id' => $equipment->id
+            ]);
+
+            $this->assertDatabaseCount('character_equipment', 1);
+
+            Livewire::test(CharacterViewer::class, ['character' => $character])
+                ->set('itemForm.id', $equipment->id)
+                ->set('itemForm.quantity', 5)
+                ->call('addItemAndQuantity', ['id' => $equipment->id, 'name'])
+                ->call('deleteItem', $equipment->id);
+
+            $this->assertDatabaseCount('character_equipment', 0);
+
+        }
+
+        /** @test */
+        public function can_add_spells()
+        {
+            $user = User::factory()->create();
+            $this->actingAs($user);
+            $character = Character::factory()->create(['user_id' => $user->id]);
+            $spell = Spell::factory()->create();
+            Livewire::test(CharacterViewer::class, ['character' => $character])
+                ->set('spellForm.id', $spell->id)
+                ->call('addSpell')
+                ->assertSee($spell->name);
+        }
+
+                /** @test */
+        public function can_delete_spells()
+        {
+            $user = User::factory()->create();
+            $this->actingAs($user);
+            $character = Character::factory()->create(['user_id' => $user->id]);
+            $spell = Spell::factory()->create();
+            CharacterSpell::factory()->create([
+                'character_id' => $character->id,
+                'spell_id' => $spell->id
+            ]);
+
+            $this->assertDatabaseCount('character_spell', 1);
+
+            Livewire::test(CharacterViewer::class, ['character' => $character])
+                ->set('spellForm.id', $spell->id)
+                ->call('addSpell')
+                ->call('deleteSpell', $spell->id);
+
+            $this->assertDatabaseCount('character_spell', 0);
+
+        }
 
 }
