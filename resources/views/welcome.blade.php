@@ -11,8 +11,8 @@
                 <p>You are logged in</p>
             @else
                 <p>Welcome to the DM's Toolbelt</p>
-                <p>Respectfully submitted on 5/15/2022</p>
-                <p>By Andrew Banakus</p>
+                <p>Respectfully submitted by Andrew Banakus</p>
+                <p>CSU Fullerton 2022</p>
             @endauth
 
         </div>

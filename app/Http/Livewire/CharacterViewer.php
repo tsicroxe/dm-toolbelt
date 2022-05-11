@@ -114,9 +114,12 @@ class CharacterViewer extends Component
         $this->total_stealth = $this->calculateSkill($this->dex_mod, $character->stealth);
         $this->total_survival = $this->calculateSkill($this->wis_mod, $character->survival);
 
-        $this->equipment = Equipment::all()->sortBy('name');
-        $this->spells = Spell::all()->sortBy('name')->sortBy('level');
+        // Equipment
+        $this->equipment = Equipment::orderBy('name')->get();
+        $this->addEquipmentBonuses($character->equipment);
 
+        // Spells
+        $this->spells = Spell::all()->sortBy('name')->sortBy('level');
         $this->cantrips = $character->spells->where('level', 0);
         $this->spells_level_one = $character->spells->where('level', 1);
         $this->spells_level_two = $character->spells->where('level', 2);
@@ -229,6 +232,14 @@ class CharacterViewer extends Component
         $this->validateOnly($propertyName);
         $this->character->save();
         $this->emit('reRenderParent');
+    }
+
+    public function addEquipmentBonuses($equipment): void
+    {
+        foreach($equipment as $item)
+        {
+            $this->armor_class += $item->ac_bonus;
+        }
     }
 
 

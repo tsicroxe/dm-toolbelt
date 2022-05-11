@@ -29,7 +29,18 @@ class DatabaseSeeder extends Seeder
             'type' => 'Marshal Melee Weapon',
             'attribute' => 'Slashing',
             'cost' => '100',
-            'weight' => 5
+            'weight' => 5,
+            'ac_bonus' => 0
+        ]);
+
+        Equipment::factory()->create([
+            'name' => 'Leather Armor',
+            'description' => 'Proficiency with a longsword allows you to add your proficiency bonus to the attack roll for any attack you make with it.',
+            'type' => 'Marshal Melee Weapon',
+            'attribute' => 'Slashing',
+            'cost' => '100',
+            'weight' => 5,
+            'ac_bonus' => 1
         ]);
 
         Spell::factory()->count(500)->create();

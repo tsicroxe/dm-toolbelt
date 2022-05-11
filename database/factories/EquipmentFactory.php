@@ -19,6 +19,7 @@ class EquipmentFactory extends Factory
             'type' => $this->faker->word,
             'cost' => $this->faker->numberBetween(0, 1000),
             'weight' => $this->faker->numberBetween(0, 1000),
+            'ac_bonus' => $this->faker->numberBetween(0, 5),
             'attribute' => $this->faker->word
         ];
     }

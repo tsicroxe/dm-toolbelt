@@ -44,7 +44,7 @@ class Character extends Model
      */
     public function equipment()
     {
-        return $this->belongsToMany(Equipment::class)->withPivot(['quantity', 'equipped']);
+        return $this->belongsToMany(Equipment::class)->withPivot(['quantity']);
     }
 
     /*

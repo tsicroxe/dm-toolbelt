@@ -16,8 +16,8 @@ class CreateCharacterSpellsTable extends Migration
         Schema::create('character_spell', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('character_id')->constrained();
-            $table->foreignId('spell_id')->constrained();
+            $table->foreignId('character_id')->constrained()->onDelete("cascade");;
+            $table->foreignId('spell_id')->constrained()->onDelete("cascade");;
 
             $table->boolean('prepared')->default(false);
 

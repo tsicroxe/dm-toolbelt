@@ -16,8 +16,8 @@ class CreateCharacterGuildPivotTable extends Migration
         Schema::create('character_guild', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('character_id')->constrained();
-            $table->foreignId('guild_id')->constrained();
+            $table->foreignId('character_id')->constrained()->onDelete("cascade");;
+            $table->foreignId('guild_id')->constrained()->onDelete("cascade");;
 
             $table->integer('level')->default(1);
 

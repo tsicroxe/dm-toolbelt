@@ -1,7 +1,7 @@
 <div class="flex flex-col min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
 
-    <div class="flex mb-4 ml-16">
-        <div class="w-1/2 bg-gray-400">
+    <div class="flex mb-4 ml-16 border-double border-4">
+        <div class="w-1/2">
 
 
             <div class="w-full max-w-lg text-gray-700 p-5">
@@ -199,11 +199,11 @@
 
 
                         @foreach($character->spells->sortBy('level') as $char_spell)
-                            <tr>
+                        <tr>
                             <td>{{$char_spell->level}}</td>
                             <td><a href="/spells/{{$char_spell->id}}">{{$char_spell->name}}</a></td>
 
-                            <td><input type="checkbox"/> </td>
+                            <td><input type="checkbox" /> </td>
 
                             <td>
                                 <button wire:click="deleteSpell({{$char_spell->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
@@ -213,9 +213,9 @@
                         </tr>
                         @endforeach
 
-                    
-                    
-                    
+
+
+
                     </table>
 
 
@@ -231,7 +231,7 @@
 
 
         </div>
-        <div class="w-1/2 bg-gray-500 p-5">
+        <div class="w-1/2 p-5">
 
             <div id="skills" class="mt-5">
 
