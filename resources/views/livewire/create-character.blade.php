@@ -3,14 +3,14 @@
         <div>
 
             @if (session()->has('message'))
-                <p class="text-green-700">
-                    {{ session('message') }}
-                </p>
+            <p class="text-green-700">
+                {{ session('message') }}
+            </p>
             @endif
             @if (session()->has('max'))
-                <p class="text-red-700">
-                    {{ session('max') }}
-                </p>
+            <p class="text-red-700">
+                {{ session('max') }}
+            </p>
             @endif
 
         </div>

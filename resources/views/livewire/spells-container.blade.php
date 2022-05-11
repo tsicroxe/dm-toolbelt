@@ -12,8 +12,8 @@
     <form wire:submit.prevent="removeSpell(null)">
 
         @foreach($character->spells as $spell)
-        
-        
+
+
         @endforeach
         <table>
             <th>Cantrips</th>
@@ -21,7 +21,7 @@
             <tr>
                 <td></td>
             </tr>
-        
+
         </table>
 
         <table>
@@ -34,9 +34,9 @@
                 <td>{{$cantrip->name}}</td>
                 <td><input type="checkbox" value="{{$cantrip->pivot?->prepared}}"></input></td>
                 <td>
-                <button wire:click="removeSpell({{$cantrip->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                    X
-                </button>
+                    <button wire:click="removeSpell({{$cantrip->id}})" class="bg-red-300 hover:bg-red-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                        X
+                    </button>
                 </td>
 
             </tr>

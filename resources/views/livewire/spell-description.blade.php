@@ -1,6 +1,6 @@
 <div class="ml-16 p-5 mt-8 items-center">
-    
-    <p class="text-2xl mt-5" >{{$spell->name}}</p>
+
+    <p class="text-2xl mt-5">{{$spell->name}}</p>
 
     <div class="grid grid-cols-4 gap-4 mt-5">
         <div>
@@ -10,10 +10,12 @@
         <div>
             <p class="font-extrabold">Cast Time</p>
             <p>{{$spell->cast_time ?? ''}}</p>
-        </div>        <div>
+        </div>
+        <div>
             <p class="font-extrabold">Range/Area</p>
             <p>{{$spell->range_area ?? ''}}</p>
-        </div>        <div>
+        </div>
+        <div>
             <p class="font-extrabold">Components</p>
             <p>{{$spell->components ?? ''}}</p>
         </div>
@@ -25,10 +27,12 @@
         <div>
             <p class="font-extrabold">School</p>
             <p>{{$spell->school ?? ''}}</p>
-        </div>        <div>
+        </div>
+        <div>
             <p class="font-extrabold">Attack / Save</p>
             <p>{{$spell->attack_save ?? ''}}</p>
-        </div>        <div>
+        </div>
+        <div>
             <p class="font-extrabold">Damage type</p>
             <p>{{$spell->damage_type ?? ''}}</p>
         </div>

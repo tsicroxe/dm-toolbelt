@@ -13,6 +13,8 @@ class TokenizerContainer extends Component
 
     public $photo;
 
+    public $featureFlag = false; // Normally would be set in database or config, however going to set it here as showing functionality
+
     public function upload()
     {
         $this->validate([
@@ -26,6 +28,11 @@ class TokenizerContainer extends Component
     public function render()
     {
         return view('livewire.tokenizer-container');
+    }
+
+    public function toggleFeatureFlag()
+    {
+        return $this->featureFlag = !$this->featureFlag;
     }
 
 }
